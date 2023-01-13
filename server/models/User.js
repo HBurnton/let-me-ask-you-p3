@@ -1,9 +1,8 @@
-const mongoose = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const { Schema, model } = mongoose;
 const bcrypt = require('bcrypt');
 const Question = require('./Question');
-const Answer = required('./Answer')
+const Answer = require('./Answer')
 
 const userSchema = new Schema({
     username: {
@@ -22,12 +21,31 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    questions: [Question],
-    answers: [Answer]
+    questions: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Question',
+        required: true        
+    }],
+    answers: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Answer',
+        required: true
+    }],
 });
 
+userSchema.pre('save', async function (next) {
+    if (this.isNew || this.isModified('password')) {
+        const saltrounds = 10;
+        this.password = await bcrypt.hash(this.password, saltrounds);
+    }
 
+    next();
+})
 
-const User = mongoose.model('User', userSchema);
+userSchema.methods.isCorrectPassword = async function (password) {
+        return bcrypt.compare(password, this.password)
+}
+
+const User = model('User', userSchema);
 
 module.exports = User;
