@@ -23,15 +23,31 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
+        password: String
         questions: [Question]
         answers: [Answer]
+    }
+
+    type Auth{
+        token: ID
+        user: User
     }
 
     type Query {
         categories: [Category]
         users: [User]
+        user: User
         questions: [Question]
+        question(_id: ID!): Question
         answers: [Answer]
+    }
+
+    type Mutation {
+        addUser(
+            username: String!
+            email: String!
+            password: String!
+        ): Auth
     }
 `;
 
