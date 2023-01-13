@@ -1,0 +1,20 @@
+{
+  "name": "let-me-ask-you-p3",
+  "version": "1.0.0",
+  "description": "Let Me Ask You Project 3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HBurnton/let-me-ask-you-p3.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HBurnton/let-me-ask-you-p3/issues"
+  },
+  "homepage": "https://github.com/HBurnton/let-me-ask-you-p3#readme"
+}
