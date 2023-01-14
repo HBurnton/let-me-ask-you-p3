@@ -1,8 +1,11 @@
 const { Schema, model } = require('mongoose');
 
 const bcrypt = require('bcrypt');
-const Question = require('./Question');
-const Answer = require('./Answer')
+// changing this up so we dont have to have any requiring below in the model 
+// bc any new user is not going to have questions tied to it which will be an issue 
+// and its less code to just write [...Schema]
+const questionSchema = require('./Question');
+const answerSchema = require('./Answer')
 
 const userSchema = new Schema({
     username: {
@@ -21,16 +24,8 @@ const userSchema = new Schema({
         required: true,
         unique: true
     },
-    questions: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Question',
-        required: true        
-    }],
-    answers: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Answer',
-        required: true
-    }],
+    questions: [questionSchema],
+    answers: [answerSchema],
 });
 
 userSchema.pre('save', async function (next) {
