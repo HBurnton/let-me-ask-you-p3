@@ -23,7 +23,6 @@ const typeDefs = gql`
         _id: ID
         username: String
         email: String
-        password: String
         questions: [Question]
         answers: [Answer]
     }
@@ -36,9 +35,9 @@ const typeDefs = gql`
     type Query {
         categories: [Category]
         users: [User]
-        user: User
+        user(id: ID!): User
         questions: [Question]
-        question(_id: ID!): Question
+        question(id: ID!): Question
         answers: [Answer]
     }
 
