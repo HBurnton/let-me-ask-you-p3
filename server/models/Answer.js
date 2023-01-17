@@ -6,7 +6,7 @@ const answerSchema = new Schema({
         required: true,
         minlength: 1
     },
-    author: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
