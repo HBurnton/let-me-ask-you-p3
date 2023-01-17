@@ -1,8 +1,9 @@
 const { Schema, model } = require('mongoose');
 
 const bcrypt = require('bcrypt');
-const Question = require('./Question');
-const Answer = require('./Answer')
+// changing this up so we dont have to have any requiring below in the model 
+// bc any new user is not going to have questions tied to it which will be an issue 
+// and its less code to just write [...Schema]
 
 const userSchema = new Schema({
     username: {
@@ -19,19 +20,24 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        match: [/.+@.+\..+/, 'Must use a valid email address'],
     },
-    questions: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Question',
-        required: true        
-    }],
-    answers: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Answer',
-        required: true
-    }],
-});
+    questions: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Question'
+    },
+    answers: {
+        type: [Schema.Types.ObjectId],
+        ref: 'Answer'
+    }
+    },
+    {
+        toJSON: {
+            virtuals: true,
+        },
+    }
+);
 
 userSchema.pre('save', async function (next) {
     if (this.isNew || this.isModified('password')) {
@@ -45,6 +51,10 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
         return bcrypt.compare(password, this.password)
 }
+// making a virtual for the amount of questions a user has 
+userSchema.virtual('questionCount').get(function () {
+    return this.questions.length;
+  });
 
 const User = model('User', userSchema);
 
