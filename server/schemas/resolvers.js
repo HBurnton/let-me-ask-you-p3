@@ -43,6 +43,7 @@ const resolvers = {
 
       return { token, user }
     },
+<<<<<<< HEAD
     addQuestion: async(parent, args, context) => {
       console.log(context.user);
       try {
@@ -76,6 +77,27 @@ const resolvers = {
 
     //   return { token, user };
     // }
+=======
+    //added login for the mutations 
+    // i know that this seems like its not a manipulation but it is bc your changing STATE
+    login: async(parent, {username, password}) => {
+      const user = await User.findOne({ username: username, password: password});
+
+      if(!user) {
+        throw new AuthenticationError('incorrect credentials');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if(!correctPw) {
+        throw new AuthenticationError('incorrect credentials');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    }
+>>>>>>> 7f23819e0eb422c63f74169a34824eeca68ba479
     // we also need an addQuestion Mutation ...
 
     // and a addComment//or Answer(idk do we want to change this to comment i feel like answer is not as semantic) Mutation ...
