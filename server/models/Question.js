@@ -1,6 +1,4 @@
-// const { Schema, model, SchemaTypes } = require('mongoose');
 const { Schema, model } = require('mongoose');
-
 const questionSchema = new Schema({
     questionText: {
         type: String,
@@ -14,7 +12,7 @@ const questionSchema = new Schema({
         ref: 'Category',
         required: true
     },
-    author: {
+    user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true       

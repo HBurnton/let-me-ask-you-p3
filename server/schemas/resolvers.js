@@ -5,6 +5,7 @@ const {
   Question, 
   Answer
 } = require('../models');
+const { update } = require('../models/User');
 
 const { update } = require('../models/User');
 const { signToken } = require('../utils/auth')
@@ -46,6 +47,7 @@ const resolvers = {
   },
 
   Mutation: {
+
     addCategory: async (parent, {name}) =>{
       return await Category.create({name})
     },
@@ -83,6 +85,7 @@ const resolvers = {
 
       return { token, user }
     },
+
     removeUser: async (parent, { id }) => {
       let removeQuestionByUserId = await Question.deleteMany({ author: id})
       let removeAnswersByUserId = await Answer.deleteMany({ authorId: id })
@@ -94,6 +97,7 @@ const resolvers = {
       let newAnswer = await Answer.create({answerText, authorId: user, questionId: question})
       return newAnswer
     }
+
   }
 };
 

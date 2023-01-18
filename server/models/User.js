@@ -37,6 +37,7 @@ const userSchema = new Schema({
         virtuals: true,
     },
 }
+
 );
 
 userSchema.pre('save', async function (next) {
