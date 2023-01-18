@@ -56,26 +56,26 @@ const resolvers = {
         console.log(err);
         throw new AuthenticationError('incorrect credentials');
       }
-    }
+    },
     //added login for the mutations 
     // i know that this seems like its not a manipulation but it is bc your changing STATE
-    // login: async(parent, {username, password}) => {
-    //   const user = await User.findOne({ username: username, password: password});
+     login: async(_parent, {username, password}) => {
+       const user = await User.findOne({ username: username, password: password});
 
-    //   if(!user) {
-    //     throw new AuthenticationError('incorrect credentials');
-    //   }
+       if(!user) {
+         throw new AuthenticationError('incorrect credentials');
+       }
 
-    //   const correctPw = await user.isCorrectPassword(password);
+       const correctPw = await user.isCorrectPassword(password);
 
-    //   if(!correctPw) {
-    //     throw new AuthenticationError('incorrect credentials');
-    //   }
+       if(!correctPw) {
+         throw new AuthenticationError('incorrect credentials');
+       }
 
-    //   const token = signToken(user);
+       const token = signToken(user);
 
-    //   return { token, user };
-    // }
+       return { token, user };
+     }
     // we also need an addQuestion Mutation ...
 
     // and a addComment//or Answer(idk do we want to change this to comment i feel like answer is not as semantic) Mutation ...

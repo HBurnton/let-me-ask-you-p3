@@ -25,7 +25,7 @@ const typeDefs = gql`
     }
 
     type Auth {
-        token: ID
+        token: ID!
         user: User
     }
 
@@ -38,12 +38,8 @@ const typeDefs = gql`
         answers: [Answer]
     }
 
-    type Auth {
-        token: ID
-        user: User
-    }
-
     type Mutation {
+        login(username: String!, password: String!): Auth
         createUser(username: String!, email: String!, password: String!): Auth
         addQuestion(username: String!, questionText: String!): User
     }

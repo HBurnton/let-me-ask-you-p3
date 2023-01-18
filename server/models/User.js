@@ -15,7 +15,8 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        trim: true
+        trim: true,
+        minlenght: 8
     },
     email: {
         type: String,
@@ -39,22 +40,22 @@ const userSchema = new Schema({
     }
 );
 
-userSchema.pre('save', async function (next) {
+userSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
-        const saltrounds = 10;
-        this.password = await bcrypt.hash(this.password, saltrounds);
+        const saltRounds = 10;
+        this.password = await bcrypt.hash(this.password, saltRounds);
     }
 
     next();
-})
+});
 
-userSchema.methods.isCorrectPassword = async function (password) {
+userSchema.methods.isCorrectPassword = async function(password) {
         return bcrypt.compare(password, this.password)
-}
+};
 // making a virtual for the amount of questions a user has 
 userSchema.virtual('questionCount').get(function () {
     return this.questions.length;
-  });
+});
 
 const User = model('User', userSchema);
 
