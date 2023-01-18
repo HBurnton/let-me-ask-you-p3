@@ -6,12 +6,12 @@ const answerSchema = new Schema({
         required: true,
         minlength: 1
     },
-    author: {
+    authorId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    question: {
+    questionId: {
         type: Schema.Types.ObjectId,
         ref: 'Question',
         required: true
