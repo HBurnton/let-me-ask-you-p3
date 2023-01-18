@@ -5,7 +5,6 @@ const {
   Question, 
   Answer
 } = require('../models');
-const { update } = require('../models/User');
 
 const { update } = require('../models/User');
 const { signToken } = require('../utils/auth')
