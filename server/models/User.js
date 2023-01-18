@@ -22,22 +22,23 @@ const userSchema = new Schema({
         type: String,
         required: true,
         unique: true,
-        match: [/.+@.+\..+/, 'Must use a valid email address'],
+        match: [/.+@.+\..+/, 'Must use a valid email address']
     },
-    questions: {
-        type: [Schema.Types.ObjectId],
-        ref: 'Question'
+    // questions: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Question'
+    // },
+    // answers: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Answer'
+    // },
+},
+{
+    toJSON: {
+        virtuals: true,
     },
-    answers: {
-        type: [Schema.Types.ObjectId],
-        ref: 'Answer'
-    }
-    },
-    {
-        toJSON: {
-            virtuals: true,
-        },
-    }
+}
+
 );
 
 userSchema.pre('save', async function(next) {

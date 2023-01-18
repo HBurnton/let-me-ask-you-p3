@@ -21,27 +21,27 @@ const typeDefs = gql`
         email: String
         password: String
         questions: [Question]
-        answers: [Answer]
     }
 
     type Auth {
         token: ID!
         user: User
     }
-
     type Query {
         categories: [Category]
+        questions: [Question]
         users: [User]
         user: User
-        questions: [Question]
-        question(_id: ID!): Question
         answers: [Answer]
+        answersByQuestionId(questionId: ID!): [Answer]
+        answersByUserId(authorId: ID!): [Answer]
     }
 
     type Mutation {
         login(username: String!, password: String!): Auth
         createUser(username: String!, email: String!, password: String!): Auth
-        addQuestion(username: String!, questionText: String!): User
+        removeUser(id: ID!):User
+        addAnswer(answerText: String!, authorId: String!, questionId: ID!):Answer
     }
 `;
 
