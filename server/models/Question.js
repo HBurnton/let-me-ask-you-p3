@@ -1,8 +1,4 @@
 const { Schema, model } = require('mongoose');
-
-const Answer = require('./Answer');
-const User = require('./User');
-
 const questionSchema = new Schema({
     questionText: {
         type: String,
@@ -21,7 +17,12 @@ const questionSchema = new Schema({
         ref: 'User',
         required: true       
     },
-    answers: [Answer.schema],
+    // answers: [
+    //     {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Answer'
+    //     }
+    // ],
     voteCount: {
         type: Number,
         default: 0
