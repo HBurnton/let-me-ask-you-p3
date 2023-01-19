@@ -64,3 +64,4 @@ Users are able view their own and other users submitted questions by clicking on
 
 [Deployed Application On Heroku](https://www.example.com)
 [Project Page On Github](https://github.com/HBurnton/let-me-ask-you-p3)
+[Presentation Slidedeck](https://docs.google.com/presentation/d/1wgxFXTv_Lnm4xS2XxyMJ6vbQxWtMBtfOVxNdIGNlgRM/edit?usp=sharing)
