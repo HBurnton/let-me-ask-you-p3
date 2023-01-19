@@ -9,7 +9,6 @@ const typeDefs = gql`
         category: Category
         author: User
         voteCount: Int
-        answers: [Answer]
     }
     type Answer {
         answerText: String
@@ -20,7 +19,6 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
-        questions: [Question]
     }
 
     type Auth {
