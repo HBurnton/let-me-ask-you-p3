@@ -1,29 +1,28 @@
 const { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-    type Category{
+    type Category {
         name: String
     }
-    type Question{
+    type Question {
         questionText: String
         category: Category
         author: User
         voteCount: Int
     }
-    type User{
+    type Answer {
+        answerText: String
+        author: User
+        question: Question
+    }
+    type User {
         username: String
         email: String
         password: String
-        questions: [Question]
     }
-    type Answer{
-        _id: ID
-        answerText: String
-        authorId: User
-        questionId: Question
-    }
-    type Auth{
-        token: ID
+
+    type Auth {
+        token: ID!
         user: User
     }
     type Query {
@@ -35,12 +34,9 @@ const typeDefs = gql`
         answersByQuestionId(questionId: ID!): [Answer]
         answersByUserId(authorId: ID!): [Answer]
     }
-    type Auth{
-        token: ID
-        user: User
-    }
-    type Mutation {
 
+    type Mutation {
+        login(username: String!, password: String!): Auth
         addCategory(name: String!):Category
         addQuestion(questionText: String!, category: String!, author: String!):Question
         removeQuestion(id: ID!):Question

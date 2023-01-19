@@ -5,7 +5,6 @@ const {
   Question, 
   Answer
 } = require('../models');
-const { update } = require('../models/User');
 
 const { update } = require('../models/User');
 const { signToken } = require('../utils/auth')
@@ -96,8 +95,31 @@ const resolvers = {
       let question = await Question.findOne({_id:questionId})
       let newAnswer = await Answer.create({answerText, authorId: user, questionId: question})
       return newAnswer
-    }
+    },
+    //added login for the mutations 
+    // i know that this seems like its not a manipulation but it is bc your changing STATE
+     login: async(_parent, {username, password}) => {
 
+       const user = await User.findOne({ username: username});
+
+       const correctPw = await user.isCorrectPassword(password);
+
+       if(!user) {
+        throw new AuthenticationError('incorrect credentials');
+      }
+
+       if(!correctPw) {
+         throw new AuthenticationError('incorrect credentials');
+       }
+
+       const token = signToken(user);
+
+       return { token, user };
+     }
+    // we also need an addQuestion Mutation ...
+
+    // and a addComment//or Answer(idk do we want to change this to comment i feel like answer is not as semantic) Mutation ...
+  
   }
 };
 
