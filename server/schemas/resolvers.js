@@ -5,7 +5,6 @@ const {
   Question, 
   Answer
 } = require('../models');
-const { update } = require('../models/User');
 
 const { update } = require('../models/User');
 const { signToken } = require('../utils/auth')
@@ -85,7 +84,7 @@ const resolvers = {
 
       return { token, user }
     },
-    addQuestion: async(parent, args, context) => {
+    /*addQuestion: async(parent, args, context) => {
       console.log(context.user);
       try {
         const updatedUser = await User.findByIdAndUpdate(
@@ -98,17 +97,18 @@ const resolvers = {
         console.log(err);
         throw new AuthenticationError('incorrect credentials');
       }
-    },
+    },*/
     //added login for the mutations 
     // i know that this seems like its not a manipulation but it is bc your changing STATE
      login: async(_parent, {username, password}) => {
-       const user = await User.findOne({ username: username, password: password});
 
-       if(!user) {
-         throw new AuthenticationError('incorrect credentials');
-       }
+       const user = await User.findOne({ username: username});
 
        const correctPw = await user.isCorrectPassword(password);
+
+       if(!user) {
+        throw new AuthenticationError('incorrect credentials');
+      }
 
        if(!correctPw) {
          throw new AuthenticationError('incorrect credentials');
