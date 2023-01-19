@@ -87,8 +87,6 @@ const resolvers = {
     },
 
     removeUser: async (parent, { id }) => {
-      let removeQuestionByUserId = await Question.deleteMany({ author: id})
-      let removeAnswersByUserId = await Answer.deleteMany({ authorId: id })
       return User.findOneAndDelete({ _id: id });
     },
     addAnswer: async (parent, { answerText, authorId, questionId }) => {

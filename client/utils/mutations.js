@@ -39,7 +39,7 @@ export const ADD_CATEGORY = gql`
         }
     }
 `
-
+// verify parameter name, apollo liked this syntax
 export const REMOVE_QUESTION = gql`
     mutation removeQuestion($removeQuestionId: ID!) {
         removeQuestion(id: $removeQuestionId) {
@@ -58,7 +58,7 @@ export const CREATE_USER = gql`
         }
     }
 `
-
+// verify parameter name, apollo liked this syntax
 export const REMOVE_USER = gql`
     mutation removeUser($removeUserId: ID!) {
         removeUser(id: $removeUserId) {
