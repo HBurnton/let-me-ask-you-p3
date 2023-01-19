@@ -5,14 +5,3 @@
   padding: 0;
   box-sizing: border-box;
 }
-
-body {
-  background-image: url("https://img.freepik.com/free-vector/black-wave-halftone-background_1199-279.jpg?w=2000");
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  width: 100vw;
-  font-family: "Raleway", sans-serif;
-}
