@@ -12,7 +12,7 @@ const questionSchema = new Schema({
         ref: 'Category',
         required: true
     },
-    user: {
+    author: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true       
