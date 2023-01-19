@@ -11,20 +11,18 @@ const typeDefs = gql`
         category: Category
         author: User
         voteCount: Int
-        answers: [Answer]
     }
     type Answer {
         _id: ID
         answerText: String
-        author: User
-        question: Question
+        authorId: User
+        questionId: Question
     }
     type User {
         _id: ID
         username: String
         email: String
         password: String
-        questions: [Question]
     }
     type Auth {
         token: ID!
@@ -33,6 +31,8 @@ const typeDefs = gql`
     type Query {
         categories: [Category]
         questions: [Question]
+        questionsByUserId(author: ID!): [Question]
+        questionsByCategory(category: ID!): [Question]
         users: [User]
         user(username: String!): User
         answers: [Answer]

@@ -10,16 +10,19 @@ const { update } = require('../models/User');
 const { signToken } = require('../utils/auth')
 
 const resolvers = {
-  // data finders
 
   Query: {
-    // we need some parameters 'args,context,...'here, not sure what exactly yet but that'll be determined on where we go with the app 
     categories: async () => {
       return await Category.find({});
     },
     questions: async () => {
       return await Question.find({}).populate('category').populate('author');
-      // return await Question.find({}).populate('category').populate('author').populate('answers');
+    },
+    questionsByUserId: async (parent, {author}) => {
+      return await Question.find({ author: author }).populate('category').populate('author');
+    },
+    questionsByCategory: async (parent, {category}) => {
+      return await Question.find({ category: category }).populate('category').populate('author');
     },
     users: async () => {
       return await User.find({});
@@ -38,10 +41,10 @@ const resolvers = {
       return await Answer.find({}).populate('authorId').populate('questionId');
     },
     answersByQuestionId: async (parent, {questionId}) => {
-      return await Answer.find({ questionId: questionId })
+      return await Answer.find({ questionId: questionId }).populate('authorId').populate('questionId');
     },
     answersByUserId: async (parent, {authorId}) => {
-      return await Answer.find({ authorId: authorId })
+      return await Answer.find({ authorId: authorId }).populate('authorId').populate('questionId');
     }
   },
 
@@ -58,20 +61,7 @@ const resolvers = {
       // let testing3 = await User.findByIdAndUpdate(userId, {questions: newQuestion._id})
       return newQuestion
     },
-    // addQuestion: async(parent, args, context) => {
-    //   console.log(context.user);
-    //   try {
-    //     const updatedUser = await User.findByIdAndUpdate(
-    //       { _id: context.user._id },
-    //       { $addToSet: { questions: args } },
-    //       { new: true, runValidators: true }
-    //     );
-    //     return (updatedUser);
-    //   } catch (err) {
-    //     console.log(err);
-    //     throw new AuthenticationError('incorrect credentials');
-    //   }
-    // },
+
     removeQuestion: async (parent, { id }) => {
       let removeAnswersByQuestionId = await Answer.deleteMany({ questionId: id })
       return Question.findOneAndDelete({ _id: id });
