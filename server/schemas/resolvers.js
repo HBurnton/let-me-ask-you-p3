@@ -84,6 +84,18 @@ const resolvers = {
 
       return { token, user }
     },
+
+    removeUser: async (parent, { id }) => {
+      let removeQuestionByUserId = await Question.deleteMany({ author: id})
+      let removeAnswersByUserId = await Answer.deleteMany({ authorId: id })
+      return User.findOneAndDelete({ _id: id });
+    },
+    addAnswer: async (parent, { answerText, authorId, questionId }) => {
+      let user = await User.findOne({username:authorId})
+      let question = await Question.findOne({_id:questionId})
+      let newAnswer = await Answer.create({answerText, authorId: user, questionId: question})
+      return newAnswer
+    },
     //added login for the mutations 
     // i know that this seems like its not a manipulation but it is bc your changing STATE
      login: async(_parent, {username, password}) => {
