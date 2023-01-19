@@ -53,7 +53,8 @@ const resolvers = {
     addCategory: async (parent, {name}) =>{
       return await Category.create({name})
     },
-    addQuestion: async (parent, {questionText, category, author}) =>{
+    addQuestion: async (parent, {questionText, category, author}, context) =>{
+      console.log(author)
       let categoryId = await Category.findOne({name:category});
       let userId = await User.findOne({username:author})
       let newQuestion = await Question.create({questionText, category:categoryId, author: userId})
@@ -76,8 +77,6 @@ const resolvers = {
     },
 
     removeUser: async (parent, { id }) => {
-      let removeQuestionByUserId = await Question.deleteMany({ author: id})
-      let removeAnswersByUserId = await Answer.deleteMany({ authorId: id })
       return User.findOneAndDelete({ _id: id });
     },
     addAnswer: async (parent, { answerText, authorId, questionId }) => {
@@ -105,7 +104,17 @@ const resolvers = {
        const token = signToken(user);
 
        return { token, user };
-     }
+     },
+     /*updateVoteCount: async(_parent, {_id, voteCount}) => {
+      const question = await Question.findByIdAndUpdate({ _id: _id});
+
+      if(!question) {
+        throw new Error('No question with that ID')
+      }
+
+      newVoteCount = voteCount
+
+     }*/
   }
 };
 
