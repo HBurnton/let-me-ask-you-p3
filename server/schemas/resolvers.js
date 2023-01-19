@@ -84,20 +84,6 @@ const resolvers = {
 
       return { token, user }
     },
-    /*addQuestion: async(parent, args, context) => {
-      console.log(context.user);
-      try {
-        const updatedUser = await User.findByIdAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { questions: args } },
-          { new: true, runValidators: true }
-        );
-        return (updatedUser);
-      } catch (err) {
-        console.log(err);
-        throw new AuthenticationError('incorrect credentials');
-      }
-    },*/
     //added login for the mutations 
     // i know that this seems like its not a manipulation but it is bc your changing STATE
      login: async(_parent, {username, password}) => {
