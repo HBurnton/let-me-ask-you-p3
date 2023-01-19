@@ -1,4 +1,4 @@
-#🙋‍♀️ Let Me Ask You 🙋‍♂️
+# 🙋‍♀️ Let Me Ask You 🙋‍♂️
 
 ## Description
 
@@ -11,14 +11,13 @@ Let Me Ask You is a Q&A app designed to foster interesting conversation among us
 - [Credits](#credits)
 - [License](#license)
 - [Links](#links)
----
+
 ## Installation
 
 To run the application on a local machine, clone the git repo via your preferred method and run `npm install` from the root directory to install all necessary packages. Upon installation run `npm run develop` to run from the root folder and test app locally. Additionally the site can be reached at the live site link.
 
-[Deployed Application](https://www.example.com)
+[Deployed Application](https://polar-sierra-99541.herokuapp.com/)
 
----
 ## Usage
 
 ![User Homepage to Be Updated](assets/images/appImage.jpg)
@@ -40,7 +39,6 @@ Users are able view their own and other users submitted questions by clicking on
 * Expanded browsing UI for questions
 * Question search
 
----
 
 ## Technologies Used
 * [React](https://reactjs.org/)
@@ -59,9 +57,9 @@ Users are able view their own and other users submitted questions by clicking on
 * [Autumn Legere](https://github.com/autumnlegere) - Backend Models, TypeDefs/Resolvers and Mutations, GraphQl
 * [Harrison Burnton](https://github.com/HBurnton) - Backend Models, TypeDefs/Resolvers, Github and Heroku management, ReadMe, Presentation Slidedeck
 
----
+
 # Links
 
-[Deployed Application On Heroku](https://www.example.com)
-[Project Page On Github](https://github.com/HBurnton/let-me-ask-you-p3)
-[Presentation Slidedeck](https://docs.google.com/presentation/d/1wgxFXTv_Lnm4xS2XxyMJ6vbQxWtMBtfOVxNdIGNlgRM/edit?usp=sharing)
+* [Deployed Application On Heroku](https://polar-sierra-99541.herokuapp.com/)
+* [Project Page On Github](https://github.com/HBurnton/let-me-ask-you-p3)
+* [Presentation Slidedeck](https://docs.google.com/presentation/d/1wgxFXTv_Lnm4xS2XxyMJ6vbQxWtMBtfOVxNdIGNlgRM/edit?usp=sharing)
