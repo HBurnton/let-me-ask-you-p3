@@ -1,4 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react';
+import { useMutation } from 'react-router-dom';
+import { LOGIN_USER } from '../utils/mutations';
 import styled from 'styled-components';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -8,7 +10,9 @@ import '../assets/css/Login.css';
 
 
 // ended up going with styled componenets for now instead of MUI because it was being a pain in my butt for now
-const Login = () => {
+const Login = (props) => {
+  const [formState, setFormState] = useState({ username: '', password: '' });
+  
   return (
     <div className='login-body'>
     <MainContainer>
