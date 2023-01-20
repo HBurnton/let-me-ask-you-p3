@@ -24,14 +24,18 @@ const userSchema = new Schema({
         unique: true,
         match: [/.+@.+\..+/, 'Must use a valid email address']
     },
-    // questions: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Question'
-    // },
-    // answers: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Answer'
-    // },
+    questions: [
+        {
+       type: Schema.Types.ObjectId,
+        ref: 'Question'
+        }
+    ],
+    answers: [
+        {
+        type: Schema.Types.ObjectId,
+        ref: 'Answer'
+        }
+    ],
 },
 {
     toJSON: {

@@ -1,8 +1,44 @@
 [
     {
-        "questionText": "",
-        "category": "",
-        "author": "",
+        "questionText": "WHICH TEAM IS GONNA WIN THIS SUNDAY??",
+        "category": "Sports",
+        "author": "Num1GiantsFan002",
+        "voteCount": 10
+    },
+    {
+        "questionText": "Why ISN'T the earth flat?",
+        "category": "Science",
+        "author": "Flathead",
         "voteCount": 0
     },
+    {
+        "questionText": "What are some important red flags in a relationship?",
+        "category": "Life",
+        "author": "DjangoFett",
+        "voteCount": 0
+    },
+    {
+        "questionText": "How do you start a band?",
+        "category": "Advice",
+        "author": "BubbleBass901",
+        "voteCount": 0
+    },
+    {
+        "questionText": "What made you happy today?",
+        "category": "Life",
+        "author": "LifeIsGood02",
+        "voteCount": 0
+    },
+    {
+        "questionText": "What are Taxes?",
+        "category": "Life",
+        "author": "RealAdult2007",
+        "voteCount": 0
+    },
+    {
+        "questionText": "Anyone for Tea?",
+        "category": "Life",
+        "author": "MadHatter97",
+        "voteCount": 0
+    }
 ]
