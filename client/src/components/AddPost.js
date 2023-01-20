@@ -8,8 +8,7 @@
   import {UserImage} from "../components/utils/UserImage";
   import {WidgetWrapper} from "../components/utils/WidgetWrapper";
 
-
-
+  import styled from "styled-components";
   import LinearProgress from '@mui/material/LinearProgress';
   
  export const AddPost = () => {
@@ -48,8 +47,19 @@
             </FlexBetween>
 
         <Divider sx={{ margin: "1.25rem 0" }} />
+        <HorizontalRule />
   
       </WidgetWrapper>
       </div>
     );
   };
+
+  const HorizontalRule = styled.hr`
+  width: 100%;
+  height: 0.3rem;
+  border-radius: 0.8rem;
+  border: none;
+  background: white;
+  background-color: white;
+  margin: 0;
+`;
