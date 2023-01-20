@@ -24,7 +24,7 @@ const userSchema = new Schema({
         unique: true,
         match: [/.+@.+\..+/, 'Must use a valid email address']
     },
-    questions: [
+    /*questions: [
         {
        type: Schema.Types.ObjectId,
         ref: 'Question'
@@ -35,7 +35,7 @@ const userSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Answer'
         }
-    ],
+    ],*/
 },
 {
     toJSON: {
