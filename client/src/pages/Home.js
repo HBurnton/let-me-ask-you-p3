@@ -1,5 +1,5 @@
 import React from 'react'
-// import Logo from '../assets/images/lmay-logo.png';
+import Logo from '../assets/images/lmay-logo.png';
 // import Box from '@mui/joy/Box';
 // import Button from '@mui/joy/Button';
 // import FormControl from '@mui/joy/FormControl';
@@ -16,12 +16,14 @@ import React from 'react'
 // import Fab from '@mui/material/Fab';
 // import AddIcon from '@mui/icons-material/Add';
 
-
+import { Box, useMediaQuery } from "@mui/material";
 import '../assets/css/Home.css';
 import { Banner } from '../components/Banner';
 import { AddPost } from '../components/AddPost';
 // import { FeedCaro } from '../components/FeedCaro';
 import { Posts } from '../components/Posts';
+import { UserWidget } from '../components/UserWidget';
+import { AdvertWidget } from '../components/utils/AdvertWidget';
 
 
 
@@ -30,91 +32,40 @@ export const Home = () => {
   // const [fontWeight, setFontWeight] = React.useState('normal');
   // const [anchorEl, setAnchorEl] = React.useState(null);
 
+  const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
+
 
 
   return (
     <div>
     <Banner />
-    <AddPost />
-    <Posts />
-
-
-    {/* <FeedCaro />
-    <span className='tagline'>WELCOME</span>
-    <Box sx={{ '& > :not(style)': { m: 2 } }} className='add-icon'>
-      <Fab color="white" aria-label="add">
-        <AddIcon />
-      </Fab>
-    <FormLabel>ADD QUESTION</FormLabel>
-    </Box>
-    <div className='container-sm'>
-    <FormControl className='form-structure'>
-      <Textarea
-        placeholder="Type something here…"
-        minRows={3}
-        endDecorator={
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 'var(--Textarea-paddingBlock)',
-              pt: 'var(--Textarea-paddingBlock)',
-              borderTop: '1px solid',
-              borderColor: 'divider',
-              flex: 'auto',
-            }}
-          >
-            <IconButton
-              variant="plain"
-              color="neutral"
-              onClick={(event) => setAnchorEl(event.currentTarget)}
-            >
-              <FormatBold />
-              <KeyboardArrowDown fontSize="md" />
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-              size="sm"
-              placement="bottom-start"
-              sx={{ '--List-decorator-size': '24px' }}
-            >
-              {['200', 'normal', 'bold'].map((weight) => (
-                <MenuItem
-                  key={weight}
-                  selected={fontWeight === weight}
-                  onClick={() => {
-                    setFontWeight(weight);
-                    setAnchorEl(null);
-                  }}
-                  sx={{ fontWeight: weight }}
-                >
-                  <ListItemDecorator>
-                    {fontWeight === weight && <Check fontSize="sm" />}
-                  </ListItemDecorator>
-                  {weight === '200' ? 'lighter' : weight}
-                </MenuItem>
-              ))}
-            </Menu>
-            <IconButton
-              variant={italic ? 'soft' : 'plain'}
-              color={italic ? 'primary' : 'neutral'}
-              aria-pressed={italic}
-              onClick={() => setItalic((bool) => !bool)}
-            >
-              <FormatItalic />
-            </IconButton>
-            <Button sx={{ ml: 'auto' }}>SEND</Button>
+    <Box>
+      <Box
+          width="100%"
+          padding="2rem 6%"
+          display={isNonMobileScreens ? "flex" : "block"}
+          gap="0.5rem"
+          justifyContent="center"
+          sx={{border: "white"}}
+        >
+          <Box flexBasis={isNonMobileScreens ? "26%" : undefined}>
+            <UserWidget  picturePath={Logo} />
           </Box>
-        }
-        sx={{
-          minWidth: 300,
-          fontWeight,
-          fontStyle: italic ? 'italic' : 'initial',
-        }}
-      />
-    </FormControl>
-    </div> */}
+          <Box
+          flexBasis={isNonMobileScreens ? "42%" : undefined}
+          mt={isNonMobileScreens ? undefined : "2rem"}
+          > 
+          <AddPost />
+          <Posts />
+          </Box>
+          {isNonMobileScreens && (
+          <Box flexBasis="26%">
+            <AdvertWidget />
+            <Box m="2rem 0" />
+          </Box>
+          )}
+        </Box>
+    </Box>
     </div>
   );
 }
