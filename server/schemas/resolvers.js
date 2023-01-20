@@ -35,7 +35,6 @@ const resolvers = {
         if (!foundUser) {
           throw new AuthenticationError('Incorrect credentials');
         }
-        console.log(foundUser)
         return (foundUser);
     }, 
     answers: async () => {
