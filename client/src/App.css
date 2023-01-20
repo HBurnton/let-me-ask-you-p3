@@ -74,3 +74,13 @@ p.danger {
   width: 100vw;
   font-family: "Raleway", sans-serif;
 }
+
+/* .margin-posts {
+  margin: 0px 300px 0px 300px;
+} */
+
+@media screen and (min-width: 1200px) {
+  .margin-posts {
+    margin: 0px 300px 0px 300px;
+  }
+}
