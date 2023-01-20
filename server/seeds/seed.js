@@ -24,10 +24,10 @@ db.once('open', async () => {
             // find Category ID
             const catQuery = Category.findOne({ name: questionSeeds[i].category})
             const catDoc = await catQuery.exec()
-            // set id to variable
+            // set ID to variable
             const userId = userDoc._id
             const catId = catDoc._id 
-            
+            // set author and category to ID variables
             questionSeeds[i].author = userId
             questionSeeds[i].category = catId
 
