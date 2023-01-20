@@ -6,12 +6,12 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 
 import Logo from '../assets/images/lmay-logo.png';
 
-export const Friend = () => {
+export const Friend = ({picture, name}) => {
   
   return (
     <FlexBetween>
       <FlexBetween gap="1rem">
-        <UserImage image={Logo} size="55px" />
+        <UserImage image={picture} size="55px" />
         <Box
         >
           <Typography
@@ -25,7 +25,7 @@ export const Friend = () => {
               },
             }}
           >
-            Test User 
+            {name} 
           </Typography>
           <Typography color="white" fontSize="0.75rem">
             1/19/2023 4:15 P.M

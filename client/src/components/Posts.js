@@ -81,8 +81,8 @@ export const Posts = () => {
             key={id}
             name={username}
             description={description}
-            userPicturePath={userPicturePath}
-            likes={votes}
+            picture={userPicturePath}
+            votes={votes}
             comments={comments}
             className= 'margin-posts'
           />

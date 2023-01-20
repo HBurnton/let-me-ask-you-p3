@@ -11,9 +11,9 @@ import {
   import { AddComment } from "../AddComment";
   
   export const PostWidget = ({
-    username,
+    name,
     description,
-    userPicturePath,
+    picture,
     votes
   }) => {
 
@@ -26,8 +26,8 @@ import {
         <div className="margin-posts">
             <WidgetWrapper m="2rem 0" className="margin-posts">
                 <Friend
-                name={username}
-                userPicturePath={userPicturePath}
+                name={name}
+                picture={picture}
                 />
                 <Typography color={main} sx={{ mt: "1rem", backgroundColor: "white", borderRadius: "6px", padding: "25px" }}>
                 {description}
