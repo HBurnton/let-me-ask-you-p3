@@ -23,6 +23,8 @@ const typeDefs = gql`
         username: String
         email: String
         password: String
+        questions: [Question]
+        answers: [Answer]
     }
     type Auth {
         token: ID!

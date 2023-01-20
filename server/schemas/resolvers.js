@@ -54,7 +54,7 @@ const resolvers = {
       return await Category.create({name})
     },
     addQuestion: async (parent, {questionText, category, author}, context) =>{
-      console.log(author)
+      
       let categoryId = await Category.findOne({name:category});
       let userId = await User.findOne({username:author})
       let newQuestion = await Question.create({questionText, category:categoryId, author: userId})
