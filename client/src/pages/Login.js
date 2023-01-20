@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useMutation } from 'react-router-dom';
+import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import styled from 'styled-components';
 import Input from '../components/Input';
@@ -12,17 +12,48 @@ import '../assets/css/Login.css';
 // ended up going with styled componenets for now instead of MUI because it was being a pain in my butt for now
 const Login = (props) => {
   const [formState, setFormState] = useState({ username: '', password: '' });
-  
+  const [login, { error, data }] = useMutation(LOGIN_USER);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault() // prevent page reload;
+    try {
+      const { data } = await login({
+        variables: { ...formState },
+      });
+
+      login(data.login.token);
+    } catch (e) {
+      console.error(e)
+    }
+      
+    // clear submit
+    setFormState({
+      username: '',
+      password: '',
+    })
+  }
+
+
+
   return (
     <div className='login-body'>
     <MainContainer>
       <WelcomeText>Let Me Ask You</WelcomeText>
       <InputContainer>
-        <Input type="text" placeholder="Username" />
-        <Input type="password" placeholder="Password" />
-      </InputContainer>
+        <Input type="text" placeholder="Username" value={formState.username} onChange={handleChange} />
+        <Input type="password" placeholder="Password" value={formState.password} onChange={handleChange} />
+      </InputContainer>      
       <ButtonContainer>
-        <Button content="Log In" />
+        <Button content="Log In" type="submit"/>
       </ButtonContainer>
       <HorizontalRule />
       <orSignUp>
