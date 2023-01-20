@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
+import Auth from '../utils/auth'
 import styled from 'styled-components';
 import Input from '../components/Input';
 import Button from '../components/Button';
@@ -29,8 +30,8 @@ const Login = (props) => {
       const { data } = await login({
         variables: { ...formState },
       });
-
-      login(data.login.token);
+      console.log('hello')
+      Auth.login(data.login.token);
     } catch (e) {
       console.error(e)
     }
@@ -46,7 +47,7 @@ const Login = (props) => {
 
   return (
     <div className='login-body'>
-    <MainContainer>
+    <MainContainer onSubmit={handleSubmit}>
       <WelcomeText>Let Me Ask You</WelcomeText>
       <InputContainer>
         <Input type="text" placeholder="Username" value={formState.username} onChange={handleChange} />
@@ -56,12 +57,12 @@ const Login = (props) => {
         <Button content="Log In" type="submit"/>
       </ButtonContainer>
       <HorizontalRule />
-      <orSignUp>
+      <OrSignUp>
         {/* not sure why this is isnt registering, tried a couple things already  */}
         <h5 className='black'>
         Don't have an Account?
         </h5>
-      </orSignUp>
+      </OrSignUp>
       <ButtonContainer>
         <Button content="Sign Up Here" />
       </ButtonContainer>
@@ -152,8 +153,9 @@ const ButtonContainer = styled.div`
 `;
 
 //not sure why its saying this isnt defined lol (bc it is)
+// PascalCase
 
-const orSignUp = styled.div`
+const OrSignUp = styled.div`
   cursor: pointer;
   margin-top: 40px;
   color: black;
