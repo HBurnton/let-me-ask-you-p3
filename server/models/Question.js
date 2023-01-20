@@ -17,12 +17,6 @@ const questionSchema = new Schema({
         ref: 'User',
         required: true       
     },
-    // answers: [
-    //     {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Answer'
-    //     }
-    // ],
     voteCount: {
         type: Number,
         default: 0

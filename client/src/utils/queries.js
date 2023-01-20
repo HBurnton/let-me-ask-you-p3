@@ -9,9 +9,22 @@ export const QUERY_CATEGORIES = gql`
   }
 `;
 
+// query Questions {
+//   questions {
+//     _id
+//     questionText
+//     category {
+//       name
+//     }
+//     author {
+//       username
+//     }
+//     voteCount
+//   }
+// }
 
 export const QUERY_QUESTIONS = gql`
-  query questions {
+  query Questions {
     questions {
       _id
       questionText
