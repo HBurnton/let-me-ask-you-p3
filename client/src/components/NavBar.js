@@ -2,7 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import '../assets/css/Navbar.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import userIcon from '../assets/images/userIcon.png';
+import userIcon from '../assets/images/dummypfp.png';
 import { HashLink } from 'react-router-hash-link';
 import logo from '../assets/images/lmay-logo.png';
 
