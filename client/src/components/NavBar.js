@@ -33,7 +33,7 @@ export const NavBar = () => {
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled": ""}>
         <Container>
-            <Navbar.Brand href="/">
+            <Navbar.Brand href="/home">
                 <img src={logo} alt="Logo" />
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav">
@@ -41,7 +41,7 @@ export const NavBar = () => {
             </Navbar.Toggle> 
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="/" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>HOME</Nav.Link>
+                    <Nav.Link href="/home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>HOME</Nav.Link>
                     <Nav.Link href="/leaderboard" className={activeLink === 'leaderboard' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('leaderboard')}>LEADERBOARD</Nav.Link>
                 </Nav>
                 <span className='navbar-text'>

@@ -2,7 +2,7 @@ import { Box } from "@mui/material";
 
 import Logo from '../../assets/images/lmay-logo.png';
 
-export const UserImage = ({ image, size = "60px" }) => {
+export const UserImage = ({ userPicturePath, size = "60px" }) => {
   return (
     <Box width={size} height={size}>
       <img
@@ -10,8 +10,7 @@ export const UserImage = ({ image, size = "60px" }) => {
         width={size}
         height={size}
         alt="user"
-        src={image}
-        
+        src={Logo}
       />
     </Box>
   );
