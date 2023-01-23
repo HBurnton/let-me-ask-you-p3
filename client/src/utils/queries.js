@@ -9,29 +9,17 @@ export const QUERY_CATEGORIES = gql`
   }
 `;
 
-// query Questions {
-//   questions {
-//     _id
-//     questionText
-//     category {
-//       name
-//     }
-//     author {
-//       username
-//     }
-//     voteCount
-//   }
-// }
-
 export const QUERY_QUESTIONS = gql`
   query Questions {
     questions {
       _id
       questionText
       category {
+        _id
         name
       }
       author {
+        _id
         username
       }
       voteCount
@@ -45,6 +33,7 @@ export const QUERY_QUESTIONSBYUSERID = gql`
       _id
       questionText
       category {
+        _id
         name
       }
       voteCount
@@ -58,6 +47,7 @@ export const QUERY_QUESTIONSBYCATEGORY = gql`
       _id
       questionText
       author {
+        _id
         username
       }
       voteCount

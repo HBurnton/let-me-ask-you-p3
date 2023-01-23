@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth'
+import Auth from '../utils/oldAuth'
 import styled from 'styled-components';
 import Input from '../components/Input';
-import Button from '../components/Button';
 import '../assets/css/Login.css';
 // import siteLogo from '../assets/images/lmay-logo.png';
 // import Signup from './Signup';
@@ -12,6 +11,11 @@ import '../assets/css/Login.css';
 
 // ended up going with styled componenets for now instead of MUI because it was being a pain in my butt for now
 const Login = (props) => {
+
+  function sayHello() {
+    alert('You clicked me!');
+  }
+
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -54,7 +58,7 @@ const Login = (props) => {
         <Input type="password" placeholder="Password" value={formState.password} onChange={handleChange} />
       </InputContainer>      
       <ButtonContainer>
-        <Button content="Log In" type="submit"/>
+        <Button onClick={handleSubmit}>Log In</Button>
       </ButtonContainer>
       <HorizontalRule />
       <OrSignUp>
@@ -64,7 +68,7 @@ const Login = (props) => {
         </h5>
       </OrSignUp>
       <ButtonContainer>
-        <Button content="Sign Up Here" />
+        <Button>Sign Up Here</Button>
       </ButtonContainer>
     </MainContainer>
 
@@ -172,6 +176,17 @@ const HorizontalRule = styled.hr`
   backdrop-filter: blur(25px);
 `;
 
+const Button = styled.button`
+  background: black;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  width: 65%;
+  height: 3rem;
+  border: none;
+  color: white;
+  border-radius: 2rem;
+  cursor: pointer;
+`;
 
 
 export default Login;
