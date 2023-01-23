@@ -1,23 +1,38 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+import decode from 'jwt-decode';
 
-const httpLink = createHttpLink({
-  uri: '/graphql',
-});
-
-const authLink = setContext((_, { headers }) => {
-  // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('token');
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : "",
+class AuthService{
+    getUser() {
+        return decode(this.getToken());
     }
-  }
-});
 
-const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
-});
+    loggedIn() {
+        const token = this.getToken();
+
+        return token && !this.isTokenExpired(token) ? true : false;
+    }
+
+    isTokenExpired(token) {
+        const decoded = decode(token);
+        if (decoded.exp < Date.now / 1000) {
+            localStorage.removeItem('id_token');
+            return true
+        }
+        return false
+    }
+
+    getToken() {
+        return localStorage.getItem('id_token');
+    }
+
+    login(idToken) {
+        localStorage.setItem('id_token', idToken);
+        window.location.assign('/')
+    }
+
+    logout() {
+        localStorage.removeItem('id_token');
+        window.location.reload();
+    }
+}
+
+export default new AuthService();

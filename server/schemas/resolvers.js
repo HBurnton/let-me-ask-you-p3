@@ -88,14 +88,18 @@ const resolvers = {
     //added login for the mutations 
     // i know that this seems like its not a manipulation but it is bc your changing STATE
      login: async(_parent, {username, password}) => {
+      console.log(username)
+      console.log(password)
+      const lowUser = username.toLowerCase();
+    
+       const user = await User.findOne({ username: lowUser });
+       console.log(user)
 
-       const user = await User.findOne({ username: username});
-
-       const correctPw = await user.isCorrectPassword(password);
-
+       
        if(!user) {
-        throw new AuthenticationError('incorrect credentials');
-      }
+         throw new AuthenticationError('incorrect credentials');
+        }
+        const correctPw = await user.isCorrectPassword(password);
 
        if(!correctPw) {
          throw new AuthenticationError('incorrect credentials');

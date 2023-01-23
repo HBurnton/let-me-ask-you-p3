@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/oldAuth'
+import Auth from '../utils/Auth'
 import styled from 'styled-components';
-import Input from '../components/Input';
 import '../assets/css/Login.css';
 // import siteLogo from '../assets/images/lmay-logo.png';
 // import Signup from './Signup';
@@ -20,6 +19,7 @@ const Login = (props) => {
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
+    console.log('Changed!')
     const { name, value } = event.target;
 
     setFormState({
@@ -30,11 +30,15 @@ const Login = (props) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault() // prevent page reload;
+    console.log(formState.username)
+    console.log(formState.password)
+    //console.log(formState.data)
     try {
+      console.log(formState)
       const { data } = await login({
         variables: { ...formState },
       });
-      console.log('hello')
+      console.log(data)
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e)
@@ -51,15 +55,29 @@ const Login = (props) => {
 
   return (
     <div className='login-body'>
-    <MainContainer onSubmit={handleSubmit}>
+    <MainContainer>
       <WelcomeText>Let Me Ask You</WelcomeText>
+      {data ? (
+        <p>Login successfull!{' '}
+        <link to='/'>Get some answers!</link> 
+        </p>
+        ) : (
+        <form onSubmit={handleSubmit}>
       <InputContainer>
-        <Input type="text" placeholder="Username" value={formState.username} onChange={handleChange} />
-        <Input type="password" placeholder="Password" value={formState.password} onChange={handleChange} />
+        <Input type="username" name="username" placeholder="Username" value={formState.username} onChange={handleChange} />
+        <Input type="password" name="password" placeholder="Password" value={formState.password} onChange={handleChange} />
       </InputContainer>      
       <ButtonContainer>
-        <Button onClick={handleSubmit}>Log In</Button>
+        <Button type="Submit" value="submit">Log In</Button>
       </ButtonContainer>
+      </form>
+      )}
+
+      {error && (
+        <div>
+          {error.message}
+        </div>
+      )}
       <HorizontalRule />
       <OrSignUp>
         {/* not sure why this is isnt registering, tried a couple things already  */}
@@ -188,6 +206,30 @@ const Button = styled.button`
   cursor: pointer;
 `;
 
+const Input = styled.input`
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  border-radius: 2rem;
+  width: 80%;
+  height: 3rem;
+  padding: 1rem;
+  border: none;
+  outline: none;
+  color: #3c354e;
+  font-size: 1rem;
+  font-weight: bold;
+  &:focus {
+    display: inline-block;
+    box-shadow: 0 0 0 0.2rem #b9abe0;
+    backdrop-filter: blur(12rem);
+    border-radius: 2rem;
+  }
+  &::placeholder {
+    color: #b9abe099;
+    font-weight: 100;
+    font-size: 1rem;
+  }
 
+`
 export default Login;
 
