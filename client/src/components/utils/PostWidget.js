@@ -7,30 +7,38 @@ import {
   import {Friend} from "../Friend";
   import {WidgetWrapper} from "./WidgetWrapper";
   import Logo from '../../assets/images/lmay-logo.png';
-
+  import { Link } from 'react-router-dom';
   import styled from "styled-components";
-
   import { AddComment } from "../AddComment";
   
   export const PostWidget = ({
     username,
     description,
-    userPicturePath,
-    votes
+    picture,//maybe
+    votes,
+    questionId,
+    userId,
+    categoryName,
+    categoryId
   }) => {
-
-    // const likeCount = 80;
   
     const main = "black";
-    // const primary = "black";
   
     return (
         <div className="margin-posts">
             <WidgetWrapper m="2rem 0" className="margin-posts">
+            <Link
+              to={`/user/${userId}`}
+            >
                 <Friend
                 name={username}
-                userPicturePath={userPicturePath}
+                picture={picture}
                 />
+            </Link>
+            <Link to={`/category/${categoryId}`}>
+            <h3>{categoryName}</h3>
+            {/*Should link to category page w/ category as h2 at top and list of questions that match category*/ }
+            </Link>
                 <Typography color={main} sx={{ mt: "1rem", backgroundColor: "white", borderRadius: "6px", padding: "25px" }}>
                 {description}
                 </Typography>
@@ -38,13 +46,17 @@ import {
                 <FlexBetween gap="1rem">
                     <FlexBetween gap="0.3rem">
                     <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>{votes} upvotes</Typography>
+                    {/* TODO Add OnClick that updates vote */}
                     </FlexBetween>
         
                     <FlexBetween gap="0.3rem">
                     <IconButton>
                         <ChatBubbleOutlineOutlined />
                     </IconButton>
-                    <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>1 comment</Typography>
+                    <Link to={`/question/${questionId}`}>
+                        {/* TODO this routes to the question page which should display the question using ID and related answers and give user option to add ans */}
+                        <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>1 comment</Typography>
+                    </Link>
                     </FlexBetween>
                 </FlexBetween>
         
@@ -52,20 +64,6 @@ import {
                     <ShareOutlined />
                 </IconButton>
                 </FlexBetween>
-                <Box mt="0.5rem">
-                {/* {comments.map((comment, i) => ( */}
-                    <Box>
-                    Random User 
-                    <Divider />
-                    <Typography sx={{ color: "black", m: "0.5rem 0", pl: "1rem", backgroundColor: "white", borderRadius: "6px", padding: "4.5px" }}>
-                        this is a comment
-                    </Typography>
-                    </Box>
-                <Divider />
-                </Box>
-                <AddComment />
-
-                <HorizontalRule />
                 
             </WidgetWrapper>
 
