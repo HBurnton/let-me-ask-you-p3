@@ -17,8 +17,6 @@ db.once('open', async () => {
         await User.create(userSeeds);
         await Category.create(categorySeeds);
 
-        console.log(userSeeds)
-
         for (let i=0; i < questionSeeds.length; i++) {
             // find User ID
             const userQuery = User.findOne({ username: questionSeeds[i].author})
