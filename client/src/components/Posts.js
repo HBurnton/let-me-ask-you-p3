@@ -2,9 +2,29 @@ import {PostWidget} from "../components/utils/PostWidget";
 
 export const Posts = ({postData}) => {
   const questions = postData.questions;
-  console.log(questions);
   const filteredQuestions = questions.filter(post => post.voteCount > 5)
-  console.log(filteredQuestions)
+
+  return (
+    <div>
+      {
+        filteredQuestions.map(
+          ({_id, questionText, voteCount, author}) => (
+            <PostWidget
+            key={_id}
+            questionId = {_id}
+            username = {author.username}
+            userId = {author._id}
+            description={questionText} 
+            votes={voteCount}
+            className = 'margin-posts' />
+          )
+        )
+      }
+    </div>
+
+
+  );
+};
 
     // const posts = [
     //     {
@@ -62,16 +82,8 @@ export const Posts = ({postData}) => {
     //         userPicturePath: "https://avatarfiles.alphacoders.com/329/329007.png"
     //     }
     // ];
-    
-      
-  
-  
 
-
-
-  return (
-    <h1>test</h1>
-    // <>
+        // <>
     //   {postData.map(
     //     ({
     //       id,
@@ -93,6 +105,3 @@ export const Posts = ({postData}) => {
     //     )
     //   )}
     // </>
-  );
-};
-

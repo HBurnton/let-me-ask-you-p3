@@ -7,28 +7,31 @@ import {
   import {Friend} from "../Friend";
   import {WidgetWrapper} from "./WidgetWrapper";
   import Logo from '../../assets/images/lmay-logo.png';
-
+  import { Link } from 'react-router-dom';
   import { AddComment } from "../AddComment";
   
   export const PostWidget = ({
-    name,
+    username,
     description,
-    picture,
-    votes
+    picture,//maybe
+    votes,
+    questionId,
+    userId
   }) => {
-
-    // const likeCount = 80;
   
     const main = "black";
-    // const primary = "black";
   
     return (
         <div className="margin-posts">
             <WidgetWrapper m="2rem 0" className="margin-posts">
+            <Link
+              to={`/user/${userId}`}
+            >
                 <Friend
-                name={name}
+                name={username}
                 picture={picture}
                 />
+            </Link>
                 <Typography color={main} sx={{ mt: "1rem", backgroundColor: "white", borderRadius: "6px", padding: "25px" }}>
                 {description}
                 </Typography>
@@ -42,7 +45,9 @@ import {
                     <IconButton>
                         <ChatBubbleOutlineOutlined />
                     </IconButton>
-                    <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>1 comment</Typography>
+                    <Link to={`/question/${questionId}`}>
+                        <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>1 comment</Typography>
+                    </Link>
                     </FlexBetween>
                 </FlexBetween>
         
@@ -50,18 +55,6 @@ import {
                     <ShareOutlined />
                 </IconButton>
                 </FlexBetween>
-                <Box mt="0.5rem">
-                {/* {comments.map((comment, i) => ( */}
-                    <Box>
-                    Random User 
-                    <Divider />
-                    <Typography sx={{ color: "black", m: "0.5rem 0", pl: "1rem", backgroundColor: "white", borderRadius: "6px", padding: "4.5px" }}>
-                        this is a comment
-                    </Typography>
-                    </Box>
-                <Divider />
-                </Box>
-                <AddComment />
                 
             </WidgetWrapper>
 
