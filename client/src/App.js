@@ -20,7 +20,7 @@ function App() {
           <NavBar />
             <Routes>
               <Route 
-                path='/home'
+                path='/'
                 element={<Home />}
                 exact
               />
