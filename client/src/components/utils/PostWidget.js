@@ -8,6 +8,7 @@ import {
   import {WidgetWrapper} from "./WidgetWrapper";
   import Logo from '../../assets/images/lmay-logo.png';
   import { Link } from 'react-router-dom';
+  import styled from "styled-components";
   import { AddComment } from "../AddComment";
   
   export const PostWidget = ({
@@ -70,3 +71,13 @@ import {
     );
   };
   
+  const HorizontalRule = styled.hr`
+  width: 100%;
+  height: 0.3rem;
+  border-radius: 0.8rem;
+  border: none;
+  background: linear-gradient(to right, blue 0%, white 79%);
+  background-color: #ebd0d0;
+  margin: 1.5rem 0 1rem 0;
+  backdrop-filter: blur(25px);
+`;
