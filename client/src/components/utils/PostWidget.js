@@ -16,7 +16,9 @@ import {
     picture,//maybe
     votes,
     questionId,
-    userId
+    userId,
+    categoryName,
+    categoryId
   }) => {
   
     const main = "black";
@@ -32,6 +34,10 @@ import {
                 picture={picture}
                 />
             </Link>
+            <Link to={`/category/${categoryId}`}>
+            <h3>{categoryName}</h3>
+            {/*Should link to category page w/ category as h2 at top and list of questions that match category*/ }
+            </Link>
                 <Typography color={main} sx={{ mt: "1rem", backgroundColor: "white", borderRadius: "6px", padding: "25px" }}>
                 {description}
                 </Typography>
@@ -39,6 +45,7 @@ import {
                 <FlexBetween gap="1rem">
                     <FlexBetween gap="0.3rem">
                     <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>{votes} upvotes</Typography>
+                    {/* TODO Add OnClick that updates vote */}
                     </FlexBetween>
         
                     <FlexBetween gap="0.3rem">
@@ -46,6 +53,7 @@ import {
                         <ChatBubbleOutlineOutlined />
                     </IconButton>
                     <Link to={`/question/${questionId}`}>
+                        {/* TODO this routes to the question page which should display the question using ID and related answers and give user option to add ans */}
                         <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>1 comment</Typography>
                     </Link>
                     </FlexBetween>

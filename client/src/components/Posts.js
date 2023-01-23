@@ -2,15 +2,18 @@ import {PostWidget} from "../components/utils/PostWidget";
 
 export const Posts = ({postData}) => {
   const questions = postData.questions;
+  console.log(questions)
   const filteredQuestions = questions.filter(post => post.voteCount > 5)
 
   return (
     <div>
       {
         filteredQuestions.map(
-          ({_id, questionText, voteCount, author}) => (
+          ({_id, questionText, voteCount, author, category}) => (
             <PostWidget
             key={_id}
+            categoryName = {category.name}
+            categoryId = {category._id}
             questionId = {_id}
             username = {author.username}
             userId = {author._id}
