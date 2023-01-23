@@ -1,4 +1,8 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_QUESTIONS } from '../utils/queries';
+
+
 // import Logo from '../assets/images/lmay-logo.png';
 // import Box from '@mui/joy/Box';
 // import Button from '@mui/joy/Button';
@@ -29,92 +33,95 @@ export const Home = () => {
   // const [italic, setItalic] = React.useState(false);
   // const [fontWeight, setFontWeight] = React.useState('normal');
   // const [anchorEl, setAnchorEl] = React.useState(null);
+  const { loading, data } = useQuery(QUERY_QUESTIONS);
+  console.log(loading)
+  console.log(data)
 
 
 
   return (
     <div>
-    <Banner />
-    <AddPost />
-    <Posts />
+      <Banner />
+      <AddPost />
+      {loading ? <h1>Loading.....</h1> : <Posts postData={data} />}
 
 
-    {/* <FeedCaro />
-    <span className='tagline'>WELCOME</span>
-    <Box sx={{ '& > :not(style)': { m: 2 } }} className='add-icon'>
-      <Fab color="white" aria-label="add">
-        <AddIcon />
-      </Fab>
-    <FormLabel>ADD QUESTION</FormLabel>
-    </Box>
-    <div className='container-sm'>
-    <FormControl className='form-structure'>
-      <Textarea
-        placeholder="Type something here…"
-        minRows={3}
-        endDecorator={
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 'var(--Textarea-paddingBlock)',
-              pt: 'var(--Textarea-paddingBlock)',
-              borderTop: '1px solid',
-              borderColor: 'divider',
-              flex: 'auto',
-            }}
-          >
-            <IconButton
-              variant="plain"
-              color="neutral"
-              onClick={(event) => setAnchorEl(event.currentTarget)}
+      {/* <FeedCaro />
+      <span className='tagline'>WELCOME</span>
+      <Box sx={{ '& > :not(style)': { m: 2 } }} className='add-icon'>
+        <Fab color="white" aria-label="add">
+          <AddIcon />
+        </Fab>
+      <FormLabel>ADD QUESTION</FormLabel>
+      </Box>
+      <div className='container-sm'>
+      <FormControl className='form-structure'>
+        <Textarea
+          placeholder="Type something here…"
+          minRows={3}
+          endDecorator={
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 'var(--Textarea-paddingBlock)',
+                pt: 'var(--Textarea-paddingBlock)',
+                borderTop: '1px solid',
+                borderColor: 'divider',
+                flex: 'auto',
+              }}
             >
-              <FormatBold />
-              <KeyboardArrowDown fontSize="md" />
-            </IconButton>
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-              size="sm"
-              placement="bottom-start"
-              sx={{ '--List-decorator-size': '24px' }}
-            >
-              {['200', 'normal', 'bold'].map((weight) => (
-                <MenuItem
-                  key={weight}
-                  selected={fontWeight === weight}
-                  onClick={() => {
-                    setFontWeight(weight);
-                    setAnchorEl(null);
-                  }}
-                  sx={{ fontWeight: weight }}
-                >
-                  <ListItemDecorator>
-                    {fontWeight === weight && <Check fontSize="sm" />}
-                  </ListItemDecorator>
-                  {weight === '200' ? 'lighter' : weight}
-                </MenuItem>
-              ))}
-            </Menu>
-            <IconButton
-              variant={italic ? 'soft' : 'plain'}
-              color={italic ? 'primary' : 'neutral'}
-              aria-pressed={italic}
-              onClick={() => setItalic((bool) => !bool)}
-            >
-              <FormatItalic />
-            </IconButton>
-            <Button sx={{ ml: 'auto' }}>SEND</Button>
-          </Box>
-        }
-        sx={{
-          minWidth: 300,
-          fontWeight,
-          fontStyle: italic ? 'italic' : 'initial',
-        }}
-      />
-    </FormControl>
-    </div> */}
+              <IconButton
+                variant="plain"
+                color="neutral"
+                onClick={(event) => setAnchorEl(event.currentTarget)}
+              >
+                <FormatBold />
+                <KeyboardArrowDown fontSize="md" />
+              </IconButton>
+              <Menu
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)}
+                size="sm"
+                placement="bottom-start"
+                sx={{ '--List-decorator-size': '24px' }}
+              >
+                {['200', 'normal', 'bold'].map((weight) => (
+                  <MenuItem
+                    key={weight}
+                    selected={fontWeight === weight}
+                    onClick={() => {
+                      setFontWeight(weight);
+                      setAnchorEl(null);
+                    }}
+                    sx={{ fontWeight: weight }}
+                  >
+                    <ListItemDecorator>
+                      {fontWeight === weight && <Check fontSize="sm" />}
+                    </ListItemDecorator>
+                    {weight === '200' ? 'lighter' : weight}
+                  </MenuItem>
+                ))}
+              </Menu>
+              <IconButton
+                variant={italic ? 'soft' : 'plain'}
+                color={italic ? 'primary' : 'neutral'}
+                aria-pressed={italic}
+                onClick={() => setItalic((bool) => !bool)}
+              >
+                <FormatItalic />
+              </IconButton>
+              <Button sx={{ ml: 'auto' }}>SEND</Button>
+            </Box>
+          }
+          sx={{
+            minWidth: 300,
+            fontWeight,
+            fontStyle: italic ? 'italic' : 'initial',
+          }}
+        />
+      </FormControl>
+      </div> */}
     </div>
   );
 }
