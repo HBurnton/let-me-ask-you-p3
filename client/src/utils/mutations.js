@@ -76,4 +76,12 @@ export const ADD_ANSWER = gql`
         }
     }
 `
-
+export const UPDATE_VOTECOUNT = gql`
+    mutation updateVoteCount($id: ID!) {
+        updateVoteCount(id: $id) {
+            _id
+            questionText
+            voteCount
+        }
+    }
+`
