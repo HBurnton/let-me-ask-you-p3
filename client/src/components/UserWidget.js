@@ -1,6 +1,5 @@
 import {
     ManageAccountsOutlined,
-    LocationOnOutlined,
   } from "@mui/icons-material";
   import { Box, Typography, Divider } from "@mui/material";
   import {UserImage} from "./utils/UserImage";
@@ -10,7 +9,7 @@ import {
   import pfp from '../assets/images/dummypfp.png';
 
   export const UserWidget = () => {
-    const dark = "black";
+    // const dark = "black";
     const medium = "grey";
     const main = "white";
   

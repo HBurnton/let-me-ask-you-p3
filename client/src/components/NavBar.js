@@ -8,7 +8,7 @@ import logo from '../assets/images/lmay-logo.png';
 
 
 export const NavBar = () => {
-    const [activeLink, setActiveLink] = useState('home');
+    // const [activeLink, setActiveLink] = useState('home');
     const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -25,9 +25,9 @@ export const NavBar = () => {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const onUpdateActiveLink = (value) => {
-    setActiveLink(value)
-  }
+//   const onUpdateActiveLink = (value) => {
+//     setActiveLink(value)
+//   }
 
 
   return (
@@ -40,18 +40,20 @@ export const NavBar = () => {
                 <span className='navbar-toggler-icon'></span>    
             </Navbar.Toggle> 
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
+                {/* <Nav className="me-auto">
                     <Nav.Link href="/home" className={activeLink === 'home' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('home')}>HOME</Nav.Link>
                     <Nav.Link href="/leaderboard" className={activeLink === 'leaderboard' ? 'active navbar-link' : 'navbar-link'} onClick={() => onUpdateActiveLink('leaderboard')}>LEADERBOARD</Nav.Link>
-                </Nav>
+                </Nav> */}
+                <Nav className='ms-auto'>
                 <span className='navbar-text'>
                     <div className='social-icon'>
                         <a href="/profile"><img src={userIcon} alt='profile-icon' color='white' /></a>
                     </div>
-                    <HashLink to='/login'>
+                    <HashLink to='/'>
                       <button className='vvd'><span>LOGIN</span></button>
                     </HashLink>
                 </span>
+                </Nav>
             </Navbar.Collapse>
         </Container>
     </Navbar>

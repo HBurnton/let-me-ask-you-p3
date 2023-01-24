@@ -6,7 +6,7 @@ import {
   import {FlexBetween} from "./FlexBetween";
   import {Friend} from "../Friend";
   import {WidgetWrapper} from "./WidgetWrapper";
-  import Logo from '../../assets/images/lmay-logo.png';
+//   import Logo from '../../assets/images/lmay-logo.png';
 
   import styled from "styled-components";
 

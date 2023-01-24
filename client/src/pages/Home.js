@@ -24,7 +24,7 @@ import { AddPost } from '../components/AddPost';
 import { Posts } from '../components/Posts';
 import { UserWidget } from '../components/UserWidget';
 import { AdvertWidget } from '../components/utils/AdvertWidget';
-
+import { TrendingPost } from '../components/TrendingPost';
 
 
 export const Home = () => {
@@ -39,6 +39,7 @@ export const Home = () => {
   return (
     <div>
     <Banner />
+    <TrendingPost />
     <Box>
       <Box
           width="100%"
