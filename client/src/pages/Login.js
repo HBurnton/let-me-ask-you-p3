@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/Auth'
+import Auth from '../utils/auth'
 import styled from 'styled-components';
 import '../assets/css/Login.css';
+// import '../assets/css/Login.css';
 // import siteLogo from '../assets/images/lmay-logo.png';
 // import Signup from './Signup';
 

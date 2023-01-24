@@ -6,7 +6,7 @@ import styled from 'styled-components';
 const QuestionForm = () => {
     const [addQuestion, { error }] = useMutation(ADD_QUESTION);
 
-    const handleFormSUbmit = async (event) => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
         try {
             const { data } = addQuestion();
