@@ -44,6 +44,13 @@ const userSchema = new Schema({
 }
 
 );
+userSchema.pre('save', async function(next) {
+    if (this.isNew || this.isModified('username')) {
+        this.username = this.username.toLowerCase();
+    }
+
+    next()
+})
 
 userSchema.pre('save', async function(next) {
     if (this.isNew || this.isModified('password')) {
