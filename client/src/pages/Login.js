@@ -19,7 +19,7 @@ const Login = (props) => {
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
-    console.log('Changed!')
+    console.log('Changed')
     const { name, value } = event.target;
 
     setFormState({
