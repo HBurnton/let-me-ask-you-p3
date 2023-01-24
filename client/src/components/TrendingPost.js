@@ -11,9 +11,14 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
+import { useQuery } from '@apollo/client';
+import { QUERY_QUESTIONSBYVOTECOUNT } from '../utils/queries';
 
 
 export const TrendingPost = () => {
+    const { loading, data } = useQuery(QUERY_QUESTIONSBYVOTECOUNT);
+    const questionList = data?.questionsByVoteCount || [];
+
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.
@@ -43,135 +48,37 @@ export const TrendingPost = () => {
                             TRENDING
                         </h2>
                         <p>LMAY'S TOP QUESTIONS THIS WEEK</p>
-                        <Carousel responsive={responsive} infinite={true} className='skill-slider'>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    height="60"
-                                    image="https://img.icons8.com/ios11/600/000000/1-c.png"
-                                    alt="number 1"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        User1
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        question goes here 
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        VoteCount: 
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    height="60"
-                                    image="https://img.icons8.com/material-outlined/384/2.png"
-                                    alt="number 2"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        User2
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        question goes here 
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        VoteCount: 
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    height="60"
-                                    image="https://img.icons8.com/ios-glyphs/480/3.png"
-                                    alt="number 3"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        User3
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        question goes here 
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        VoteCount: 
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    height="60"
-                                    image="https://img.icons8.com/ios11/600/000000/1-c.png"
-                                    alt="number 1"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        User1
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        question goes here 
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        VoteCount: 
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    height="60"
-                                    image="https://img.icons8.com/ios11/600/000000/1-c.png"
-                                    alt="number 1"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        User1
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        question goes here 
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        VoteCount: 
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardActionArea>
-                                    <CardMedia
-                                    component="img"
-                                    height="60"
-                                    image="https://img.icons8.com/ios11/600/000000/1-c.png"
-                                    alt="number 1"
-                                    />
-                                    <CardContent>
-                                    <Typography gutterBottom variant="h5" component="div">
-                                        User1
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        question goes here 
-                                    </Typography>
-                                    <Typography variant="body2" color="text.secondary">
-                                        VoteCount: 
-                                    </Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                            </Card>
-                            
-                        </Carousel>
+                            {loading ? (
+                                    <div>Loading...</div>
+                                ) : (
+                                        <Carousel responsive={responsive} infinite={true} className='skill-slider'>
+                                            {questionList.map((question) => {
+                                                return (
+                                                    <Card sx={{ maxWidth: 345 }}>
+                                                        <CardActionArea>
+                                                            {/* <CardMedia
+                                                            component="img"
+                                                            height="60"
+                                                            image="https://img.icons8.com/ios11/600/000000/1-c.png"
+                                                            alt="number 1"
+                                                            /> */}
+                                                            <CardContent>
+                                                            <Typography gutterBottom variant="h5" component="div">
+                                                            {question.questionText} 
+                                                            </Typography>
+                                                            <Typography variant="body2" color="text.secondary">
+                                                            {question.author.username}
+                                                            </Typography>
+                                                            <Typography variant="body2" color="text.secondary">
+                                                                {question.voteCount} 
+                                                            </Typography>
+                                                            </CardContent>
+                                                        </CardActionArea>
+                                                    </Card>
+                                            )})}                                 
+                                        </Carousel>
+                                    )
+                            }
                     </div>
                 </Col>
             </Row>

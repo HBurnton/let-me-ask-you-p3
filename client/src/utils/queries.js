@@ -9,20 +9,6 @@ export const QUERY_CATEGORIES = gql`
   }
 `;
 
-// query Questions {
-//   questions {
-//     _id
-//     questionText
-//     category {
-//       name
-//     }
-//     author {
-//       username
-//     }
-//     voteCount
-//   }
-// }
-
 export const QUERY_QUESTIONS = gql`
   query Questions {
     questions {
@@ -64,6 +50,7 @@ export const QUERY_QUESTIONSBYCATEGORY = gql`
     }
   }
   `;
+
 
 export const QUERY_USERS = gql`
   query users {
@@ -130,4 +117,17 @@ export const QUERY_ANSWERSBYUSERID = gql`
   }
 `;
 
-
+export const QUERY_QUESTIONSBYVOTECOUNT = gql`
+  query questionsByVoteCount{
+    questionsByVoteCount {
+      questionText
+      voteCount
+      author {
+        username
+      }
+      category {
+        name
+      }
+    }
+  }
+`
