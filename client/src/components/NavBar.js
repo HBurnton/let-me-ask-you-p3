@@ -1,10 +1,11 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Link } from 'react';
 import '../assets/css/Navbar.css';
 import { Navbar, Container, Nav } from 'react-bootstrap';
 import userIcon from '../assets/images/dummypfp.png';
 import { HashLink } from 'react-router-hash-link';
 import logo from '../assets/images/lmay-logo.png';
+import Auth from '../utils/auth';
 
 
 export const NavBar = () => {
@@ -28,6 +29,10 @@ export const NavBar = () => {
 //   const onUpdateActiveLink = (value) => {
 //     setActiveLink(value)
 //   }
+const logout = (event) => {
+    event.preventDefault();
+    Auth.logout();
+};
 
 
   return (
@@ -50,7 +55,11 @@ export const NavBar = () => {
                         <a href="/profile"><img src={userIcon} alt='profile-icon' color='white' /></a>
                     </div>
                     <HashLink to='/'>
-                      <button className='vvd'><span>LOGIN</span></button>
+                      {Auth.loggedIn() ? (
+                        <button className='vvd' onClick={logout}><span>LOGOUT</span></button>
+                      ) : (
+                        <button className='vvd'><span>LOGIN</span></button>
+                      )}
                     </HashLink>
                 </span>
                 </Nav>
