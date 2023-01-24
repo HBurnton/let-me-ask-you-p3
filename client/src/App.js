@@ -33,7 +33,7 @@ function App() {
                 element={<Leaderboard />}
               /> 
               <Route
-                path='/login'
+                path='/'
                 element={<Login />}
                 exact
               />

@@ -25,9 +25,13 @@ nav.navbar {
   nav.navbar .navbar-nav a.nav-link.navbar-link.active {
       opacity: 1;
   }
+
+  
+
   span.navbar-text {
       display: flex;
       align-items: center;
+      
   }
   .social-icon {
       display: inline-block;
