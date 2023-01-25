@@ -62,7 +62,7 @@ const Login = (props) => {
         {gotToHome}
         
         ) : (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
       <InputContainer>
         <Input type="username" name="username" placeholder="Username" value={formState.username} onChange={handleChange} />
         <Input type="password" name="password" placeholder="Password" value={formState.password} onChange={handleChange} />
@@ -70,7 +70,7 @@ const Login = (props) => {
       <ButtonContainer>
         <Button type="Submit" value="submit">Log In</Button>
       </ButtonContainer>
-      </form>
+      </Form>
       )}
 
       {error && (
@@ -163,7 +163,9 @@ const InputContainer = styled.div`
   align-items: center;
   height: 20%;
   width: 100%;
-
+  margin: 10rem;
+  margin-left: 0;
+  margin-right: 0;
 `;
 
 const ButtonContainer = styled.div`
@@ -198,7 +200,7 @@ const Button = styled.button`
   background: black;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  width: 65%;
+  width: 25rem;
   height: 3rem;
   border: none;
   color: white;
@@ -214,6 +216,7 @@ const Input = styled.input`
   height: 3rem;
   padding: 1rem;
   border: none;
+  margin: 2rem;
   outline: none;
   color: #3c354e;
   font-size: 1rem;
@@ -230,6 +233,10 @@ const Input = styled.input`
     font-size: 1rem;
   }
 
+`
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
 `
 export default Login;
 

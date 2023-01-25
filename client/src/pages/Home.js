@@ -27,8 +27,6 @@ import { UserWidget } from '../components/UserWidget';
 import { AdvertWidget } from '../components/utils/AdvertWidget';
 import { TrendingPost } from '../components/TrendingPost';
 import { useNavigate } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY_USER, QUERY_LOGGED_IN_USER } from '../utils/queries';
 import Auth from '../utils/auth'
 
 
