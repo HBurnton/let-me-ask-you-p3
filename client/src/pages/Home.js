@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import Logo from '../assets/images/lmay-logo.png';
 // import Box from '@mui/joy/Box';
 // import Button from '@mui/joy/Button';
@@ -25,6 +25,10 @@ import { Posts } from '../components/Posts';
 import { UserWidget } from '../components/UserWidget';
 import { AdvertWidget } from '../components/utils/AdvertWidget';
 import { TrendingPost } from '../components/TrendingPost';
+import { useNavigate } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { QUERY_USER, QUERY_LOGGED_IN_USER } from '../utils/queries';
+import Auth from '../utils/auth'
 
 
 export const Home = () => {
@@ -33,10 +37,12 @@ export const Home = () => {
   // const [anchorEl, setAnchorEl] = React.useState(null);
 
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
-
+  const navigate = useNavigate();
+  const goToLogin = useCallback(() => navigate('/login', {replace: true}), [navigate]);
 
 
   return (
+    
     <div>
     <Banner />
     <TrendingPost />
@@ -68,7 +74,7 @@ export const Home = () => {
         </Box>
     </Box>
     </div>
-  );
+  )
 }
 
 

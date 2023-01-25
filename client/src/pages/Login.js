@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth'
@@ -11,15 +12,11 @@ import '../assets/css/Login.css';
 // ended up going with styled componenets for now instead of MUI because it was being a pain in my butt for now
 const Login = (props) => {
 
-  function sayHello() {
-    alert('You clicked me!');
-  }
-
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
-    console.log('Changed')
+    
     const { name, value } = event.target;
 
     setFormState({
@@ -29,17 +26,16 @@ const Login = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault() // prevent page reload;
-    console.log(formState.username)
-    console.log(formState.password)
-    //console.log(formState.data)
+    event.preventDefault(); // prevent page reload;
+    
     try {
-      console.log(formState)
+      
       const { data } = await login({
         variables: { ...formState },
       });
       
       Auth.login(data.login.token);
+      event.stopPropagation();
     } catch (e) {
       console.error(e)
     }
@@ -51,6 +47,9 @@ const Login = (props) => {
     })
   }
 
+  const navigate = useNavigate();
+  const goToSignUp = useCallback(() => navigate('/signup', {replace: true}), [navigate]);
+  const gotToHome = useCallback(() => navigate('/home', {replace: true}), [navigate])
 
 
   return (
@@ -58,9 +57,9 @@ const Login = (props) => {
     <MainContainer>
       <WelcomeText>Let Me Ask You</WelcomeText>
       {data ? (
-        <p>Login successfull!{' '}
-        <link to='/'>Get some answers!</link> 
-        </p>
+        console.log('redirecting'),
+        {gotToHome}
+        
         ) : (
         <form onSubmit={handleSubmit}>
       <InputContainer>
@@ -86,7 +85,7 @@ const Login = (props) => {
         </h5>
       </OrSignUp>
       <ButtonContainer>
-        <Button>Sign Up Here</Button>
+        <Button onClick={goToSignUp}>Sign Up Here</Button>
       </ButtonContainer>
     </MainContainer>
 

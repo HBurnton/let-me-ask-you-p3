@@ -87,6 +87,19 @@ export const QUERY_USER = gql`
   }
 `;
 
+export const QUERY_LOGGED_IN_USER = gql`
+  query LoggedInUser {
+    loggedInUser {
+      _id,
+      username,
+      questions {
+        questionText
+        voteCount
+      }
+    }
+  }
+`
+
 export const QUERY_ANSWERS = gql`
   query answers {
     answers {
