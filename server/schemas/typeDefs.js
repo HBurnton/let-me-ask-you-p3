@@ -35,6 +35,7 @@ const typeDefs = gql`
         questions: [Question]
         questionsByUserId(author: ID!): [Question]
         questionsByCategory(category: ID!): [Question]
+        questionsByVoteCount: [Question]
         users: [User]
         user(username: String!): User
         loggedInUser: User
@@ -51,6 +52,7 @@ const typeDefs = gql`
         createUser(username: String!, email: String!, password: String!): Auth
         removeUser(id: ID!):User
         addAnswer(answerText: String!, authorId: String!, questionId: ID!):Answer
+        updateVoteCount(id: ID!):Question
     }
 `;
 

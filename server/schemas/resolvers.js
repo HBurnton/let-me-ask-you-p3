@@ -6,7 +6,7 @@ const {
   Answer
 } = require('../models');
 
-const { update } = require('../models/User');
+const { update, syncIndexes } = require('../models/User');
 const { signToken } = require('../utils/auth')
 
 const resolvers = {
@@ -23,6 +23,14 @@ const resolvers = {
     },
     questionsByCategory: async (parent, {category}) => {
       return await Question.find({ category: category }).populate('category').populate('author');
+    },
+    questionsByVoteCount: async () => {
+      let questions = await Question.find({}).populate('category').populate('author');
+      function compareFn(a, b) {
+        return b.voteCount-a.voteCount;
+      };
+      let sortedQuestions = questions.sort(compareFn);
+      return sortedQuestions;
     },
     users: async () => {
       return await User.find({});
@@ -114,16 +122,15 @@ const resolvers = {
 
        return { token, user };
      },
-     /*updateVoteCount: async(_parent, {_id, voteCount}) => {
-      const question = await Question.findByIdAndUpdate({ _id: _id});
 
-      if(!question) {
-        throw new Error('No question with that ID')
-      }
-
-      newVoteCount = voteCount
-
-     }*/
+     updateVoteCount: async (parent, { id }) => {
+      const vote = await Question.findOneAndUpdate(
+        { _id: id },
+        { $inc: {voteCount: +1} },
+        { new: true }
+      );
+      return vote;
+    },
   }
 };
 

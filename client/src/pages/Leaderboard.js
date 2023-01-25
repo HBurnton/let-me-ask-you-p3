@@ -1,20 +1,17 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-// import { QUERY_QUESTIONS, QUERY_ANSWERSBYQUESTIONID } from '../utils/queries';
-import { QUERY_QUESTIONS } from '../utils/queries';
+import { QUERY_QUESTIONSBYVOTECOUNT } from '../utils/queries';
 import '../assets/css/Leaderboard.css';
 import styled from 'styled-components';
 
 
-
-
 const Leaderboard = () => {
-    const { loading, data } = useQuery(QUERY_QUESTIONS);
-    // const { processing, content } = useQuery(QUERY_ANSWERSBYQUESTIONID);
+    const { loading, data } = useQuery(QUERY_QUESTIONSBYVOTECOUNT);
 
-    const questionList = data?.questions || [];
-    // const answerList = data?.answer || [];
-console.log(questionList)
+    const questionList = data?.questionsByVoteCount || [];
+
+    console.log(questionList)
+
     return (
         <div className="leaderBody">
         <MainContainer>
@@ -24,6 +21,7 @@ console.log(questionList)
         ) : (
             <ul>
                 <h2>Question</h2>
+                <h2>ques</h2>
             {questionList.map((question) => {
                 return (
                     <li key={question._id}>
@@ -31,11 +29,6 @@ console.log(questionList)
                         {question.author.username}
                         {question.category.name}
                         {question.voteCount}
-                        {/* {answerList.map((answer) => {
-                            return (
-
-                            )
-                        })} */}
                     </li>
                 )
             })}
