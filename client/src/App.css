@@ -91,4 +91,22 @@ p.danger {
   color: #121212;
   padding: 25px 40px;
   width: 100%;
+  border: none;
+}
+
+.upload-btn {
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  text-align: center; 
+  background-color: blue; 
+  padding: 10px; 
+  font-weight: bolder; 
+  width: 100%;
+  font-size: 32px;
+  color: white;
+}
+
+.post-field {
+  width: 100%;
 }
