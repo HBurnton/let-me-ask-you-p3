@@ -117,16 +117,7 @@ const resolvers = {
 
        return { token, user };
      },
-     /*updateVoteCount: async(_parent, {_id, voteCount}) => {
-      const question = await Question.findByIdAndUpdate({ _id: _id});
 
-      if(!question) {
-        throw new Error('No question with that ID')
-      }
-
-      newVoteCount = voteCount
-
-     }*/
      updateVoteCount: async (parent, { id }) => {
       const vote = await Question.findOneAndUpdate(
         { _id: id },
