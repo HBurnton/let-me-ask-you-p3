@@ -17,15 +17,14 @@ import pfp from '../assets/images/dummypfp.png';
     const main = "white";
     const { loading, data } = useQuery(QUERY_QUESTIONSBYUSERID,
       {
-        variables: { author: Auth.getUser().data._id },
+        variables: { author: Auth.loggedIn() ? Auth.getUser().data._id : ''},
       })
     console.log(data?.questionsByUserId.length)
 
-    const [questionAsked, setQuestionsAsked] = useState()
-
-    const [username, setUsername] = useState((Auth.getUser().data.username));
+    const [username, setUsername] = useState(Auth.loggedIn() ? Auth.getUser()?.data.username : false);
     
-    return (
+    return username ? (
+      
       <WidgetWrapper>
         <h3>My Profile:</h3>
         {/* FIRST ROW */}
@@ -87,5 +86,9 @@ import pfp from '../assets/images/dummypfp.png';
          */}
         
       </WidgetWrapper>
+    ):(
+      <div>
+        <h3>Please Log in</h3>
+      </div>
     );
   };
