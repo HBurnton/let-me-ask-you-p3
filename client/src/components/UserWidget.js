@@ -1,20 +1,33 @@
+import React, { useState } from 'react';
+import { useQuery } from '@apollo/client';
+import { QUERY_QUESTIONSBYUSERID} from '../utils/queries';
 import {
     ManageAccountsOutlined,
   } from "@mui/icons-material";
-  import { Box, Typography, Divider } from "@mui/material";
-  import {UserImage} from "./utils/UserImage";
-  import {FlexBetween} from "./utils/FlexBetween";
-  import {WidgetWrapper} from "./utils/WidgetWrapper";
-  
-  import pfp from '../assets/images/dummypfp.png';
+import { Box, Typography, Divider } from "@mui/material";
+import {UserImage} from "./utils/UserImage";
+import {FlexBetween} from "./utils/FlexBetween";
+import {WidgetWrapper} from "./utils/WidgetWrapper";
+import Auth from "../utils/auth"
+import pfp from '../assets/images/dummypfp.png';
 
   export const UserWidget = () => {
     // const dark = "black";
     const medium = "grey";
     const main = "white";
-  
+    const { loading, data } = useQuery(QUERY_QUESTIONSBYUSERID,
+      {
+        variables: { author: Auth.getUser().data._id },
+      })
+    console.log(data?.questionsByUserId.length)
+
+    const [questionAsked, setQuestionsAsked] = useState()
+
+    const [username, setUsername] = useState((Auth.getUser().data.username));
+    
     return (
       <WidgetWrapper>
+        <h3>My Profile:</h3>
         {/* FIRST ROW */}
         <FlexBetween
           gap="0.5rem"
@@ -34,10 +47,10 @@ import {
                   },
                 }}
               >
-                USER PROFILE
+                {username}
               </Typography>
               <Typography color={medium}>Question Count:
-              <Typography color={main}>45</Typography>
+              <Typography color={main}>{data?.questionsByUserId.length}</Typography>
               
               </Typography>
             </Box>
@@ -55,7 +68,7 @@ import {
   
         <Divider />
   
-        {/* THIRD ROW */}
+        {/* THIRD ROW
         <Box p="1rem 0">
           <FlexBetween mb="0.5rem">
             <Typography color={medium}>Who's viewed your profile</Typography>
@@ -71,6 +84,8 @@ import {
           </FlexBetween>
         </Box>
         <Divider />
+         */}
+        
       </WidgetWrapper>
     );
   };

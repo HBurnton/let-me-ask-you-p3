@@ -60,7 +60,7 @@ const Login = (props) => {
       <WelcomeText>Let Me Ask You</WelcomeText>
       {data ? (
         <p>Login successfull!{' '}
-        <link to='/'>Get some answers!</link> 
+        <link to='/home'>Get some answers!</link> 
         </p>
         ) : (
         <form onSubmit={handleSubmit}>
