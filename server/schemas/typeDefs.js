@@ -38,6 +38,7 @@ const typeDefs = gql`
         questionsByVoteCount: [Question]
         users: [User]
         user(username: String!): User
+        loggedInUser: User
         answers: [Answer]
         answersByQuestionId(questionId: ID!): [Answer]
         answersByUserId(authorId: ID!): [Answer]
