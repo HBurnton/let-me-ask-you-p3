@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import Logo from '../assets/images/lmay-logo.png';
+import styled from 'styled-components';
 // import Box from '@mui/joy/Box';
 // import Button from '@mui/joy/Button';
 // import FormControl from '@mui/joy/FormControl';
@@ -38,11 +39,11 @@ export const Home = () => {
 
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const navigate = useNavigate();
-  const goToLogin = useCallback(() => navigate('/login', {replace: true}), [navigate]);
+  const goToLogin = useCallback(() => navigate('/', {replace: true}), [navigate]);
+  const goToSignUp = useCallback(() => navigate('/signup', {replace: true}), [navigate]);
 
-
-  return (
-    
+if (Auth.loggedIn()) {
+  return (    
     <div>
     <Banner />
     <TrendingPost />
@@ -75,8 +76,37 @@ export const Home = () => {
     </Box>
     </div>
   )
-}
+} else {
+  return <>
+  <LoginWarning>
+  <p>You must be logged in to view this page.</p> 
+  <br />
+  <p>Please do one of the following to view this content:</p>
+  <ButtonContainer>
+    <button className="youShallNotPass" onClick={goToLogin}>LOGIN</button>
+    <br />
+    <button className="youShallNotPass" onClick={goToSignUp}>SIGNUP</button>
+  </ButtonContainer>
+  </LoginWarning>
+  </>
+}}
 
 
+const ButtonContainer = styled.div`
+  margin: 1rem 0 2rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
+const LoginWarning = styled.div`
+ display : flex;
+ flex-direction: column;
+ align-items: center;
+ justify-content: center;
+ margin: 25vh;
+`
 
 

@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth'
+import Auth from '../utils/auth';
 import styled from 'styled-components';
 import '../assets/css/Login.css';
 // import '../assets/css/Login.css';
