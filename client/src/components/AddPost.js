@@ -57,8 +57,7 @@
           variables: { ...formState, author: username }
         });
         
-        Auth.login(data.addQuestion)
-        event.stopPropagation();
+        
       } catch (e) {
         console.error(e)
       }
