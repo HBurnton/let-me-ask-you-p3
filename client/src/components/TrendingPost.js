@@ -54,7 +54,9 @@ export const TrendingPost = () => {
                                         <Carousel responsive={responsive} infinite={true} className='skill-slider'>
                                             {questionList.map((question, id) => {
                                                 return (
+
                                                     <Card key={id} sx={{ maxWidth: 345 }}>
+
                                                         <CardActionArea>
                                                             {/* <CardMedia
                                                             component="img"
@@ -62,18 +64,18 @@ export const TrendingPost = () => {
                                                             image="https://img.icons8.com/ios11/600/000000/1-c.png"
                                                             alt="number 1"
                                                             /> */}
-                                                            <CardContent>
+                                                            <CardContent sx={{height: 175 }}>
                                                             <Typography gutterBottom variant="h5" component="div">
                                                             {question.questionText} 
                                                             </Typography>
                                                             <Typography variant="body2" color="text.secondary">
                                                             {question.author.username}
                                                             </Typography>
-                                                            <Typography variant="body2" color="text.secondary">
-                                                                {question.voteCount} 
-                                                            </Typography>
                                                             </CardContent>
-                                                        </CardActionArea>
+                                                            </CardActionArea>
+                                                            <Typography variant="body2" color="text.secondary">
+                                                               vote count: {question.voteCount} 
+                                                            </Typography>
                                                     </Card>
                                             )})}                                 
                                         </Carousel>

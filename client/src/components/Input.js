@@ -9,7 +9,7 @@ const StyledInput = styled.input`
   border-radius: 2rem;
   width: 80%;
   height: 3rem;
-  padding: 1rem;
+  padding: 2rem;
   border: none;
   outline: none;
   color: #3c354e;

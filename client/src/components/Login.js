@@ -13,8 +13,8 @@ const Login = () => {
     <MainContainer>
       <WelcomeText>Let Me Ask You</WelcomeText>
       <InputContainer>
-        <Input type="text" placeholder="Username" />
-        <Input type="password" placeholder="Password" />
+        <Input type="text" placeholder="Username" className='input-login' />
+        <Input type="password" placeholder="Password" className='input-login' />
       </InputContainer>
       <ButtonContainer>
         <Button content="Log In" />

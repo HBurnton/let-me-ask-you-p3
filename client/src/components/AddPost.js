@@ -1,55 +1,91 @@
   import {
     Divider,
-    InputBase,
-    Button,
     Box
   } from "@mui/material";
   import {FlexBetween} from "../components/utils/FlexBetween";
   import {UserImage} from "../components/utils/UserImage";
   import {WidgetWrapper} from "../components/utils/WidgetWrapper";
+  // import { useState, useEffect } from 'react';
+  import { useMutation } from '@apollo/client';
+  import { ADD_QUESTION } from "../utils/mutations";
+  import { QUERY_QUESTIONS } from "../utils/queries";
+  import { Button, Form } from 'semantic-ui-react';
 
   import styled from "styled-components";
   import LinearProgress from '@mui/material/LinearProgress';
+  import { useForm } from "../utils/hooks";
   
  export const AddPost = () => {
+    const { formData, onChange, onSubmit } = useForm({ content: ''}, createPostCallback);
+
+    const [addQuestion, {error}] = useMutation(ADD_QUESTION, {
+      variables: formData,
+      update(proxy, result) {
+        console.log(result);
+        const data = proxy.readQuery({
+          query: QUERY_QUESTIONS
+        });
+        const newData = [result.data.addQuestion, ...data.queryQuestions];
+        proxy.writeQuery({ query: QUERY_QUESTIONS, data: {QUERY_QUESTIONS: newData} });
+        formData.content = '';
+      },
+    });
+
+    function createPostCallback () {
+      return addQuestion();
+    }
+
+    
+    
+
     return (
       <div className="margin-posts" sx={{ margin: "100px" }}>
-        <Button className="margin-posts" variant="contained" component="label" sx={{ justifyContent: "center", display: "flex", margin: 'auto', textAlign: "center", backgroundColor: "blue", padding: "10px", fontWeight: "bolder", fontSize: "32px"}}>
-          Upload
-          {/* <input hidden accept="image/*" multiple type="file" /> */}
-        </Button>
-        <Box sx={{ width: '100%' }}>
-          <LinearProgress  />
-        </Box>
-      <WidgetWrapper>
-        <FlexBetween gap="1.5rem">
-          <UserImage />
-          <InputBase
-            placeholder="What's on your mind..."
-            sx={{
-              width: "100%",
-              backgroundColor: 'white',
-              borderRadius: "2rem",
-              padding: "1rem 2rem",
-            }}
-          />
-            <FlexBetween>
-            <Button
-                sx={{
-                color: "white",
-                backgroundColor: "blue",
-                borderRadius: "3rem",
-                }}
-            >
-                POST
+          <Form onSubmit={onSubmit}>
+            <Button type="submit" className="margin-posts upload-btn" variant="contained" component="label" sx={{ justifyContent: "center", display: "flex", margin: 'auto', textAlign: "center", backgroundColor: "blue", padding: "10px", fontWeight: "bolder", fontSize: "32px"}}>
+              UPLOAD
+              {/* <input hidden accept="image/*" multiple type="file" /> */}
             </Button>
-            </FlexBetween>
-            </FlexBetween>
-
-        <Divider sx={{ margin: "1.25rem 0" }} />
-        <HorizontalRule />
-  
-      </WidgetWrapper>
+            <Box sx={{ width: '100%' }}>
+              {<LinearProgress  />}
+            </Box>
+            <WidgetWrapper>
+                <UserImage />
+              <FlexBetween gap="1.5rem">
+                <Form.Field className="post-field">
+                  <Form.Input
+                    placeholder="whats on your mind.."
+                    name="content"
+                    value={formData?.content}
+                    onChange={onChange}
+                    error={!!error}
+                    className='input-box'
+                    style={{ border: 'none'}}
+                  />
+                </Form.Field>
+                  <FlexBetween>
+                  {/* <Button
+                      sx={{
+                      color: "white",
+                      backgroundColor: "blue",
+                      borderRadius: "3rem",
+                      }}
+                  >
+                      POST
+                  </Button> */}
+                  </FlexBetween>
+                  </FlexBetween>
+              <Divider sx={{ margin: "1.25rem 0" }} />
+              {/* <p
+                className={`m-0 ${
+                  characterCount === 140|| error ? 'text-danger' : ''
+                }`}
+                >
+                  CHARACTER COUNT: {characterCount}/140
+                  {error && <span className="ml-2">Something went wrong...</span>}
+                </p> */}
+              <HorizontalRule />
+            </WidgetWrapper>
+          </Form>
       </div>
     );
   };
