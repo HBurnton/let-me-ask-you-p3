@@ -10,11 +10,11 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('questions');
     },
-    thoughts: async (parent, { username }) => {
+    questions: async (parent, { username }) => {
       const params = username ? { username } : {};
       return Question.find(params).sort({ createdAt: -1 });
     },
-    thought: async (parent, { questionId }) => {
+    question: async (parent, { questionId }) => {
       return Question.findOne({ _id: questionId });
     },
     me: async (parent, args, context) => {
@@ -70,7 +70,7 @@ const resolvers = {
           { _id: questionId },
           {
             $addToSet: {
-              comments: { answerText, answerAuthor: context.user.username },
+              answers: { answerText, answerAuthor: context.user.username },
             },
           },
           {
@@ -97,13 +97,13 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    removeComment: async (parent, { questionId, answerId }, context) => {
+    removeAnswer: async (parent, { questionId, answerId }, context) => {
       if (context.user) {
         return Question.findOneAndUpdate(
           { _id: questionId },
           {
             $pull: {
-              comments: {
+              answers: {
                 _id: answerId,
                 answerAuthor: context.user.username,
               },
