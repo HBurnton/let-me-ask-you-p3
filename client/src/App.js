@@ -13,8 +13,10 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import SingleQuestion from './pages/SingleQuestion';
 import Profile from './pages/Profile';
-import Header from './components/Header';
-import Footer from './components/Footer';
+// import Header from './components/Header';
+// import Footer from './components/Footer';
+import { NavBar } from './components/NavBar';
+import './App.css';
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -44,16 +46,14 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="flex-column justify-flex-start min-100-vh">
-          <Header />
-          <div className="container">
+        <NavBar />
             <Routes>
               <Route 
                 path="/"
                 element={<Home />}
               />
               <Route 
-                path="/login" 
+                path="/" 
                 element={<Login />}
               />
               <Route 
@@ -73,9 +73,6 @@ function App() {
                 element={<SingleQuestion />}
               />
             </Routes>
-          </div>
-          <Footer />
-        </div>
       </Router>
     </ApolloProvider>
   );
