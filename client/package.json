@@ -9,6 +9,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/joy": "^5.0.0-alpha.64",
     "@mui/material": "^5.11.6",
+    "animate.css": "^4.1.1",
     "graphql": "^15.4.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",

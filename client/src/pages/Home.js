@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import { useQuery } from '@apollo/client';
 import QuestionList from '../components/QuestionList';
 import QuestionForm from '../components/QuestionForm';
+import { Banner } from '../components/Banner';
 import styled from 'styled-components';
 import { Box, useMediaQuery } from "@mui/material";
 import '../assets/css/Home.css';
@@ -23,6 +24,7 @@ const Home = () => {
   if (Auth.loggedIn()) {
     return (    
       <div>
+      <Banner />
       <Box>
         <Box
             width="100%"
