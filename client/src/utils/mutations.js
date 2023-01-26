@@ -12,22 +12,15 @@ export const LOGIN_USER = gql`
     }
 `
 export const ADD_QUESTION = gql`
-    mutation addQuestion(
-        $questionText: String!, $category: String!, $author: String!) {
-        addQuestion(questionText: $questionText, category: $category, author: $author) {
-            question {
-                _id
-                questionText
-                category {
-                    name
-                }
-                author {
-                    username
-                }
-                voteCount
-            }
-        }
+mutation Mutation($questionText: String!, $author: String!) {
+  addQuestion(questionText: $questionText, author: $author) {
+    _id
+    author {
+      username
     }
+  }
+}
+
 `
 
 export const ADD_CATEGORY = gql`

@@ -65,11 +65,11 @@ const resolvers = {
     addCategory: async (parent, {name}) =>{
       return await Category.create({name})
     },
-    addQuestion: async (parent, {questionText, category, author}, context) =>{
+    addQuestion: async (parent, {questionText, author}, context) =>{
       
-      let categoryId = await Category.findOne({name:category});
-      let userId = await User.findOne({username:author})
-      let newQuestion = await Question.create({questionText, category:categoryId, author: userId})
+      //let categoryId = await Category.findOne({name:category});
+      let userId = await User.findOne({username: author})
+      let newQuestion = await Question.create({questionText, /*category:categoryId,*/ author: userId})
       // let testing3 = await User.findByIdAndUpdate(userId, {questions: newQuestion._id})
       return newQuestion
     },
