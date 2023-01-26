@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import {
   ApolloClient,
   InMemoryCache,
@@ -16,7 +17,7 @@ import Profile from './pages/Profile';
 // import Header from './components/Header';
 // import Footer from './components/Footer';
 import { NavBar } from './components/NavBar';
-import './App.css';
+
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
