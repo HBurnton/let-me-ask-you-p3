@@ -14,27 +14,55 @@
   import styled from "styled-components";
   import LinearProgress from '@mui/material/LinearProgress';
   import { useForm } from "../utils/hooks";
+  import { useState } from "react";
+  import Auth from "../utils/auth";
   
  export const AddPost = () => {
-    const { formData, onChange, onSubmit } = useForm({ content: ''}, createPostCallback);
+    // const { formData, onChange, onSubmit } = useForm({ content: ''}, createPostCallback);
 
-    const [addQuestion, {error}] = useMutation(ADD_QUESTION, {
-      variables: formData,
-      update(proxy, result) {
-        console.log(result);
-        const data = proxy.readQuery({
-          query: QUERY_QUESTIONS
+    // const [addQuestion, {error}] = useMutation(ADD_QUESTION, {
+    //   variables: formData,
+    //   update(proxy, result) {
+    //     console.log(result);
+    //     const data = proxy.readQuery({
+    //       query: QUERY_QUESTIONS
+    //     });
+    //     const newData = [result.data.addQuestion, ...data.queryQuestions];
+    //     proxy.writeQuery({ query: QUERY_QUESTIONS, data: {QUERY_QUESTIONS: newData} });
+    //     formData.content = '';
+    //   },
+    // });
+
+    // function createPostCallback () {
+    //   return addQuestion();
+    // }
+    const [username, setUsername] = useState(Auth.loggedIn() ? Auth.getUser()?.data.username : '');
+    const [addQuestion, { error, data }] = useMutation(ADD_QUESTION)
+    const [formState, setFormState] = useState({ questionText: ''});
+      
+    const onChange = (event) => {
+      const { name, value } = event.target;
+
+      setFormState({
+        ...formState,
+        [name]: value
+      });
+    };
+
+    const onSubmit = async (event) => {
+      event.preventDefault();
+
+      try{
+        const { data } = await addQuestion({
+          variables: { ...formState, author: username }
         });
-        const newData = [result.data.addQuestion, ...data.queryQuestions];
-        proxy.writeQuery({ query: QUERY_QUESTIONS, data: {QUERY_QUESTIONS: newData} });
-        formData.content = '';
-      },
-    });
-
-    function createPostCallback () {
-      return addQuestion();
+        
+        Auth.login(data.addQuestion)
+        event.stopPropagation();
+      } catch (e) {
+        console.error(e)
+      }
     }
-
     
     
 
@@ -54,8 +82,8 @@
                 <Form.Field className="post-field">
                   <Form.Input
                     placeholder="whats on your mind.."
-                    name="content"
-                    value={formData?.content}
+                    name="questionText"
+                    value={formState.questionText}
                     onChange={onChange}
                     error={!!error}
                     className='input-box'
