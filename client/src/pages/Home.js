@@ -1,12 +1,16 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-
 import QuestionList from '../components/QuestionList';
 import QuestionForm from '../components/QuestionForm';
+import styled from 'styled-components';
+import { Box, useMediaQuery } from "@mui/material";
+import '../assets/css/Home.css';
 
 import { QUERY_QUESTIONS } from '../utils/queries';
 
 const Home = () => {
+
+  
   const { loading, data } = useQuery(QUERY_QUESTIONS);
   const questions = data?.questions || [];
 
@@ -35,3 +39,6 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
