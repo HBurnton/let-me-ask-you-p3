@@ -16,6 +16,7 @@ db.once('open', async () => {
         // seed users and categories
         await User.create(userSeeds);
         await Category.create(categorySeeds);
+        
 
         for (let i=0; i < questionSeeds.length; i++) {
             // find User ID

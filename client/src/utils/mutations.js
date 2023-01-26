@@ -61,14 +61,15 @@ export const REMOVE_USER = gql`
     }
 `
 
-export const ADD_ANSWER = gql`
-    mutation addAnswer($answerText: String!, $authorId: ID!, $questionId: ID!) {
-        addAnswer(answerText: $answerText, authorId: $authorId, questionId: $questionId) {
+export const ADD_ANSWERNOUSER = gql`
+    mutation addAnswerNoUser($answerText: String!, $questionId: ID!) {
+        addAnswerNoUser(answerText: $answerText, questionId: $questionId) {
             _id
             answerText
         }
     }
 `
+
 export const UPDATE_VOTECOUNT = gql`
     mutation updateVoteCount($id: ID!) {
         updateVoteCount(id: $id) {

@@ -1,10 +1,7 @@
 import React from 'react'
 // import {PostWidget} from "../components/utils/PostWidget";
-// import CardContent from '@mui/material/CardContent';
-// import { CardActionArea } from '@mui/material';
-// import Card from '@mui/material/Card';
-import { Box, Divider, IconButton, Typography } from "@mui/material";
-import { ChatBubbleOutlineOutlined, ShareOutlined } from "@mui/icons-material";
+import { Box, IconButton, Typography } from "@mui/material";
+import { ShareOutlined } from "@mui/icons-material";
 import {FlexBetween} from "./utils/FlexBetween";
 // import {Friend} from "./Friend";
 import {WidgetWrapper} from "./utils/WidgetWrapper"
@@ -14,7 +11,6 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import Logo from '../assets/images/lmay-logo.png';
 import { AddComment } from "./AddComment";
 import Auth from "../utils/auth"
-
 
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_QUESTIONS } from '../utils/queries';
@@ -47,6 +43,7 @@ export const Posts = () => {
           {questionList.map((question, idx) => {
             return (
             <WidgetWrapper key={idx} m="2rem 0" className="margin-posts">
+              {console.log(question._id)}
                 <FlexBetween>
                 <FlexBetween gap="1rem">
                   <UserImage image={Logo} size="55px" />
@@ -73,7 +70,6 @@ export const Posts = () => {
                 <IconButton
                   sx={{ backgroundColor: "white", p: "0.6rem" }}
                   icon={ThumbUpIcon}
-
                 >
                 </IconButton>
               </FlexBetween>
@@ -86,19 +82,19 @@ export const Posts = () => {
                     <Typography id={question._id} onClick={Auth.loggedIn() ? () => handleVoteUpdate(question._id) : () => ''} sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>{question.voteCount} upvotes</Typography>
                     </FlexBetween>
         
-                    <FlexBetween gap="0.3rem">
+                    {/* <FlexBetween gap="0.3rem">
                     <IconButton>
                         <ChatBubbleOutlineOutlined />
                     </IconButton>
                     <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>1 comment</Typography>
-                    </FlexBetween>
+                    </FlexBetween> */}
                 </FlexBetween>
         
                 <IconButton>
                     <ShareOutlined />
                 </IconButton>
                 </FlexBetween>
-                <Box mt="0.5rem">
+                {/* <Box mt="0.5rem">
                     <Box>
                     Random User 
                     <Divider />
@@ -107,8 +103,8 @@ export const Posts = () => {
                     </Typography>
                     </Box>
                 <Divider />
-                </Box>
-                <AddComment />
+                </Box> */}
+                <AddComment questionId={question._id} />
 
                 <HorizontalRule />
             </WidgetWrapper>

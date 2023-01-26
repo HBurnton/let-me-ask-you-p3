@@ -53,14 +53,11 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     }, 
     answers: async () => {
-      return await Answer.find({}).populate('authorId').populate('questionId');
+      return await Answer.find({}).populate('questionId');
     },
     answersByQuestionId: async (parent, {questionId}) => {
-      return await Answer.find({ questionId: questionId }).populate('authorId').populate('questionId');
+      return await Answer.find({ questionId: questionId }).populate('questionId');
     },
-    answersByUserId: async (parent, {authorId}) => {
-      return await Answer.find({ authorId: authorId }).populate('authorId').populate('questionId');
-    }
   },
 
   Mutation: {
@@ -94,12 +91,13 @@ const resolvers = {
     removeUser: async (parent, { id }) => {
       return User.findOneAndDelete({ _id: id });
     },
-    addAnswer: async (parent, { answerText, authorId, questionId }) => {
-      let user = await User.findOne({username:authorId})
+
+    addAnswerNoUser: async (parent, { answerText, questionId }) => {
       let question = await Question.findOne({_id:questionId})
-      let newAnswer = await Answer.create({answerText, authorId: user, questionId: question})
+      let newAnswer = await Answer.create({answerText, questionId: question})
       return newAnswer
     },
+
     //added login for the mutations 
     // i know that this seems like its not a manipulation but it is bc your changing STATE
      login: async(_parent, {username, password}) => {

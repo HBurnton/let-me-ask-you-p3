@@ -15,7 +15,6 @@ const typeDefs = gql`
     type Answer {
         _id: ID
         answerText: String
-        authorId: User
         questionId: Question
     }
     type User {
@@ -41,7 +40,6 @@ const typeDefs = gql`
         loggedInUser: User
         answers: [Answer]
         answersByQuestionId(questionId: ID!): [Answer]
-        answersByUserId(authorId: ID!): [Answer]
     }
 
     type Mutation {
@@ -51,7 +49,7 @@ const typeDefs = gql`
         removeQuestion(id: ID!):Question
         createUser(username: String!, email: String!, password: String!): Auth
         removeUser(id: ID!):User
-        addAnswer(answerText: String!, authorId: String!, questionId: ID!):Answer
+        addAnswerNoUser(answerText: String!, questionId: ID!):Answer
         updateVoteCount(id: ID!):Question
     }
 `;
