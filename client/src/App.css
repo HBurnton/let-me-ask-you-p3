@@ -94,6 +94,10 @@ p.danger {
   border: none;
 }
 
+.input-login {
+  width: 20px;
+}
+
 .upload-btn {
   justify-content: center;
   display: flex;

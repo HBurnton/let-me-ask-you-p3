@@ -5,7 +5,7 @@
   import {FlexBetween} from "../components/utils/FlexBetween";
   import {UserImage} from "../components/utils/UserImage";
   import {WidgetWrapper} from "../components/utils/WidgetWrapper";
-  import { useState, useEffect } from 'react';
+  // import { useState, useEffect } from 'react';
   import { useMutation } from '@apollo/client';
   import { ADD_QUESTION } from "../utils/mutations";
   import { QUERY_QUESTIONS } from "../utils/queries";

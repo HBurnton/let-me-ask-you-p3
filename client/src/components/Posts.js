@@ -1,9 +1,9 @@
 import React from 'react'
-import {PostWidget} from "../components/utils/PostWidget";
-import CardContent from '@mui/material/CardContent';
-import { CardActionArea } from '@mui/material';
-import Card from '@mui/material/Card';
-import { Box, Divider, IconButton, Typography, Button } from "@mui/material";
+// import {PostWidget} from "../components/utils/PostWidget";
+// import CardContent from '@mui/material/CardContent';
+// import { CardActionArea } from '@mui/material';
+// import Card from '@mui/material/Card';
+import { Box, Divider, IconButton, Typography } from "@mui/material";
 import { ChatBubbleOutlineOutlined, ShareOutlined } from "@mui/icons-material";
 import {FlexBetween} from "./utils/FlexBetween";
 // import {Friend} from "./Friend";
