@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../utils/mutations';
-import Auth from '../utils/auth'
+import Auth from '../utils/auth';
 import styled from 'styled-components';
 import '../assets/css/Login.css';
 // import '../assets/css/Login.css';
@@ -12,15 +13,11 @@ import '../assets/css/Login.css';
 // ended up going with styled componenets for now instead of MUI because it was being a pain in my butt for now
 const Login = (props) => {
 
-  function sayHello() {
-    alert('You clicked me!');
-  }
-
   const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   const handleChange = (event) => {
-    console.log('Changed')
+    
     const { name, value } = event.target;
 
     setFormState({
@@ -30,17 +27,16 @@ const Login = (props) => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault() // prevent page reload;
-    console.log(formState.username)
-    console.log(formState.password)
-    //console.log(formState.data)
+    event.preventDefault(); // prevent page reload;
+    
     try {
-      console.log(formState)
+      
       const { data } = await login({
         variables: { ...formState },
       });
       
       Auth.login(data.login.token);
+      event.stopPropagation();
     } catch (e) {
       console.error(e)
     }
@@ -52,6 +48,9 @@ const Login = (props) => {
     })
   }
 
+  const navigate = useNavigate();
+  const goToSignUp = useCallback(() => navigate('/signup', {replace: true}), [navigate]);
+  const gotToHome = useCallback(() => navigate('/home', {replace: true}), [navigate])
 
 
   return (
@@ -63,7 +62,7 @@ const Login = (props) => {
         <link to='/home'>Get some answers!</link> 
         </p>
         ) : (
-        <form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
       <InputContainer>
         <Input type="username" name="username" placeholder="Username" value={formState.username} onChange={handleChange} />
         <Input type="password" name="password" placeholder="Password" value={formState.password} onChange={handleChange} />
@@ -71,7 +70,7 @@ const Login = (props) => {
       <ButtonContainer>
         <Button type="Submit" value="submit">Log In</Button>
       </ButtonContainer>
-      </form>
+      </Form>
       )}
 
       {error && (
@@ -87,7 +86,7 @@ const Login = (props) => {
         </h5>
       </OrSignUp>
       <ButtonContainer>
-        <Button>Sign Up Here</Button>
+        <Button onClick={goToSignUp}>Sign Up Here</Button>
       </ButtonContainer>
     </MainContainer>
 
@@ -164,7 +163,9 @@ const InputContainer = styled.div`
   align-items: center;
   height: 20%;
   width: 100%;
-
+  margin: 10rem;
+  margin-left: 0;
+  margin-right: 0;
 `;
 
 const ButtonContainer = styled.div`
@@ -199,7 +200,7 @@ const Button = styled.button`
   background: black;
   text-transform: uppercase;
   letter-spacing: 0.2rem;
-  width: 65%;
+  width: 25rem;
   height: 3rem;
   border: none;
   color: white;
@@ -215,6 +216,7 @@ const Input = styled.input`
   height: 3rem;
   padding: 1rem;
   border: none;
+  margin: 2rem;
   outline: none;
   color: #3c354e;
   font-size: 1rem;
@@ -231,6 +233,10 @@ const Input = styled.input`
     font-size: 1rem;
   }
 
+`
+const Form = styled.form`
+    display: flex;
+    flex-direction: column;
 `
 export default Login;
 
