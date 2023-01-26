@@ -92,10 +92,6 @@ export const QUERY_ANSWERS = gql`
     answers {
       _id
       answerText
-      authorId {
-        _id
-        username
-      }
       questionId {
         _id
         questionText
@@ -109,23 +105,6 @@ export const QUERY_ANSWERSBYQUESTIONID = gql`
     answersByQuestionId(questionId: $questionId) {
         _id
         answerText
-        authorId {
-          _id
-          username
-        }
-    }
-  }
-`;
-
-export const QUERY_ANSWERSBYUSERID = gql`
-  query answersByUserId($authorId: ID!) {
-    answersByUserId(authorId: $authorId) {
-        _id
-        answerText
-        questionId {
-          _id
-          questionText
-        }
     }
   }
 `;
