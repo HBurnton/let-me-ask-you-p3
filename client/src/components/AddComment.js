@@ -25,7 +25,7 @@ export const AddComment = (props) => {
     window.location.reload();
     try {
       const { data } = await addAnswer({
-        variables: { 
+        variables: {
           ...answerFormState,
           questionId: props.questionId
          },

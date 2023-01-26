@@ -2,12 +2,9 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import Carousel from "react-multi-carousel";
 import 'react-multi-carousel/lib/styles.css';
-import LooksOneIcon from '@mui/icons-material/LooksOne';
-import Logo from '../assets/images/lmay-logo.png';
-
+import { Box, Button } from "@mui/material";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
 
@@ -21,7 +18,6 @@ export const TrendingPost = () => {
 
     const responsive = {
         superLargeDesktop: {
-            // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
             items: 5
         },
@@ -47,7 +43,7 @@ export const TrendingPost = () => {
                         <h2>
                             TRENDING
                         </h2>
-                        <p>LMAY'S TOP QUESTIONS THIS WEEK</p>
+                        <p>LMAY'S TOP QUESTIONS</p>
                             {loading ? (
                                     <div>Loading...</div>
                                 ) : (
@@ -58,12 +54,27 @@ export const TrendingPost = () => {
                                                     <Card key={id} sx={{ maxWidth: 345 }}>
 
                                                         <CardActionArea>
-                                                            {/* <CardMedia
-                                                            component="img"
-                                                            height="60"
-                                                            image="https://img.icons8.com/ios11/600/000000/1-c.png"
-                                                            alt="number 1"
-                                                            /> */}
+                                                             <Box
+                                                                sx={{
+                                                                    backgroundColor: 'blue',
+                                                                    fontSize: 200,
+                                                                    color: 'white'
+                                                                }}>
+                                                                {question.voteCount}
+                                                            </Box>
+                                                            <Button
+                                                                sx={{
+                                                                    color: 'white',
+                                                                    fontSize: 20,
+                                                                    backgroundColor: 'blue',
+                                                                    width: 350,
+                                                                    borderRadius: 0,
+                                                                    "&:hover": {
+                                                                        backgroundColor: 'blue'
+                                                                    }
+                                                                }}>
+                                                                VOTES
+                                                            </Button>
                                                             <CardContent sx={{height: 175 }}>
                                                             <Typography gutterBottom variant="h5" component="div">
                                                             {question.questionText} 
@@ -73,9 +84,6 @@ export const TrendingPost = () => {
                                                             </Typography>
                                                             </CardContent>
                                                             </CardActionArea>
-                                                            <Typography variant="body2" color="text.secondary">
-                                                               vote count: {question.voteCount} 
-                                                            </Typography>
                                                     </Card>
                                             )})}                                 
                                         </Carousel>
