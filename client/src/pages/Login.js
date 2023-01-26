@@ -58,9 +58,9 @@ const Login = (props) => {
     <MainContainer>
       <WelcomeText>Let Me Ask You</WelcomeText>
       {data ? (
-        console.log('redirecting'),
-        {gotToHome}
-        
+        <p>Login successfull!{' '}
+        <link to='/home'>Get some answers!</link> 
+        </p>
         ) : (
         <Form onSubmit={handleSubmit}>
       <InputContainer>

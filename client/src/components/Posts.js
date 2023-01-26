@@ -13,6 +13,7 @@ import {UserImage} from "./utils/UserImage";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import Logo from '../assets/images/lmay-logo.png';
 import { AddComment } from "./AddComment";
+import Auth from "../utils/auth"
 
 
 import { useQuery, useMutation } from '@apollo/client';
@@ -43,9 +44,9 @@ export const Posts = () => {
             <div>Loading...</div>
         ) : (
           <div>
-          {questionList.map((question) => {
+          {questionList.map((question, idx) => {
             return (
-            <WidgetWrapper m="2rem 0" className="margin-posts">
+            <WidgetWrapper key={idx} m="2rem 0" className="margin-posts">
                 <FlexBetween>
                 <FlexBetween gap="1rem">
                   <UserImage image={Logo} size="55px" />
@@ -82,7 +83,7 @@ export const Posts = () => {
                 <FlexBetween mt="0.25rem">
                 <FlexBetween gap="1rem">
                     <FlexBetween gap="0.3rem">
-                    <Typography id={question._id} onClick={() => handleVoteUpdate(question._id)} sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>{question.voteCount} upvotes</Typography>
+                    <Typography id={question._id} onClick={Auth.loggedIn() ? () => handleVoteUpdate(question._id) : () => ''} sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>{question.voteCount} upvotes</Typography>
                     </FlexBetween>
         
                     <FlexBetween gap="0.3rem">

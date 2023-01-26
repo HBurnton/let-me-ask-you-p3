@@ -52,9 +52,9 @@ export const TrendingPost = () => {
                                     <div>Loading...</div>
                                 ) : (
                                         <Carousel responsive={responsive} infinite={true} className='skill-slider'>
-                                            {questionList.map((question) => {
+                                            {questionList.map((question, id) => {
                                                 return (
-                                                    <Card sx={{ maxWidth: 345 }}>
+                                                    <Card key={id} sx={{ maxWidth: 345 }}>
                                                         <CardActionArea>
                                                             {/* <CardMedia
                                                             component="img"
