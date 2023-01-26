@@ -45,37 +45,42 @@ export const AddComment = (props) => {
     };
   };
 
+  const [showComment, setShowComment] = useState(false);
+
+
   return (
     <div>
           <FlexBetween gap="0.3rem">
             <IconButton>
               <ChatBubbleOutlineOutlined />
             </IconButton>
-            <Typography sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px"}}>{answerList.length} comments</Typography>
+            <Button type="button" onClick={() => setShowComment(!showComment)} sx={{ backgroundColor: "blue", borderRadius: "6px", padding: "9px", color: "white"}}>{answerList.length} comments</Button>
           </FlexBetween>
-                <WidgetWrapper>
-                {loading ? (
-                <div>Loading...</div>
-                ) : (
-                    <div>
-                    {answerList.map((answer) => {
-                      return (
-                        <Box mt="0.5rem">
-                          <Box>
-                          {/* {answer.authorId.username} */}
-                          {/* Username Here */}
-                          <Divider />
-                          <Typography sx={{ color: "black", m: "0.5rem 0", pl: "1rem", backgroundColor: "white", borderRadius: "6px", padding: "4.5px" }}>
-                            {answer.answerText}
-                            {/* answerText Here */}
-                          </Typography>
+                {
+                  showComment && 
+                  <WidgetWrapper>
+                  {loading ? (
+                  <div>Loading...</div>
+                  ) : (
+                      <div>
+                      {answerList.map((answer) => {
+                        return (
+                          <Box mt="0.5rem">
+                            <Box>
+                            {/* {answer.authorId.username} */}
+                            {/* Username Here */}
+                            <Divider />
+                            <Typography sx={{ color: "black", m: "0.5rem 0", pl: "1rem", backgroundColor: "white", borderRadius: "6px", padding: "4.5px" }}>
+                              {answer.answerText}
+                              {/* answerText Here */}
+                            </Typography>
+                            </Box>
+                            <Divider />
                           </Box>
-                          <Divider />
-                        </Box>
-                      )
-                    })}
-                  </div>
-                )}
+                        )
+                      })}
+                    </div>
+                  )}
                   <form>
                   <FlexBetween gap="1.5rem">
                     <UserImage />
@@ -90,16 +95,16 @@ export const AddComment = (props) => {
                       name="answerText"
                       value={answerFormState.answerText}
                       onChange={handleAnswerChange}
-                    />
+                      />
                     <FlexBetween>
                     <Button
                         sx={{
-                        color: "white",
-                        backgroundColor: "blue",
-                        borderRadius: "3rem",
+                          color: "white",
+                          backgroundColor: "blue",
+                          borderRadius: "3rem",
                         }}
                         onClick={handleAnswerFormSubmit}
-                    >
+                        >
                         SEND
                     </Button>
                     </FlexBetween>
@@ -107,6 +112,7 @@ export const AddComment = (props) => {
                   </form>
                   <Divider sx={{ margin: "1.25rem 0" }} />
                 </WidgetWrapper>
+              }
     </div>
   );
 }
