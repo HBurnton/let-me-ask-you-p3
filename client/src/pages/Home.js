@@ -7,6 +7,8 @@ import styled from 'styled-components';
 import { Box, useMediaQuery } from "@mui/material";
 import '../assets/css/Home.css';
 import { useNavigate } from 'react-router-dom';
+import { AddPost } from '../components/AddPost';
+
 import Auth from '../utils/auth'
 
 import { QUERY_QUESTIONS } from '../utils/queries';
@@ -40,6 +42,7 @@ const Home = () => {
             flexBasis={isNonMobileScreens ? "42%" : undefined}
             mt={isNonMobileScreens ? undefined : "2rem"}
             > 
+            <AddPost />
             </Box>
             {isNonMobileScreens && (
             <Box flexBasis="26%">
