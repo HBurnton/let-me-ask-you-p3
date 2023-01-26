@@ -52,8 +52,10 @@ const Login = (props) => {
   const goToSignUp = useCallback(() => navigate('/signup', {replace: true}), [navigate]);
   const gotToHome = useCallback(() => navigate('/home', {replace: true}), [navigate])
 
-
-  return (
+  if (Auth.loggedIn()) {
+    window.location.assign('/home')
+  } else {
+    return (
     <div className='login-body'>
     <MainContainer>
       <WelcomeText>Let Me Ask You</WelcomeText>
@@ -92,7 +94,7 @@ const Login = (props) => {
 
     </div>
 
-  );
+  );}
 }
 
 
