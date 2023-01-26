@@ -48,5 +48,9 @@
     "username": "Lernantino",
     "email": "lernantino@techfriends.dev",
     "password": "password10"
+  },{
+    "username": "Harrison",
+    "email": "hburnton@gmail.com",
+    "password": "testingthis"
   }
 ]

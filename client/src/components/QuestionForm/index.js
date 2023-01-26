@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
+import { Navigate, useParams } from 'react-router-dom';
 
 import { ADD_QUESTION } from '../../utils/mutations';
-import { QUERY_QUESTIONS, QUERY_ME } from '../../utils/queries';
+import { QUERY_QUESTIONS, QUERY_ME, QUERY_USER } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
 const QuestionForm = () => {
+  const { username: userParam } = useParams();
+
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { username: userParam },
+  });
+
+  const user = data?.me || data?.user || {};
+
   const [questionText, setQuestionText] = useState('');
 
   const [characterCount, setCharacterCount] = useState(0);
