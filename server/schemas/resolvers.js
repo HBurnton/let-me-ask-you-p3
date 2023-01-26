@@ -78,9 +78,6 @@ const resolvers = {
       let removeAnswersByQuestionId = await Answer.deleteMany({ questionId: id })
       return Question.findOneAndDelete({ _id: id });
     },
-    // addUser: async (parent, {username, password, email}) =>{
-    //   return await User.create({username, password, email})
-    // },
     createUser: async (parent, args) => {
       const user = await User.create(args);
       const token = signToken(user)

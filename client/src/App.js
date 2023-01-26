@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
-import Leaderboard from './pages/Leaderboard';
 import { NavBar } from './components/NavBar';
 import { Home } from './pages/Home';
 
@@ -24,14 +23,6 @@ function App() {
                 element={<Home />}
                 exact
               />
-              {/* <Route 
-                path='/profile'
-                element={<Profile />}
-              />*/}
-              <Route 
-                path='/leaderboard'
-                element={<Leaderboard />}
-              /> 
               <Route
                 path='/'
                 element={<Login />}

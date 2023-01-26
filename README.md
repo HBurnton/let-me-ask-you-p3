@@ -20,17 +20,17 @@ To run the application on a local machine, clone the git repo via your preferred
 
 ## Usage
 
-![User Homepage to Be Updated](assets/images/appImage.jpg)
+![User Homepage to Be Updated](assets/images/loginScreenshot.jpg)
 
-Upon login, Users are met with the homepage which presents the newest questions that are deemed to be of interest to the user community. Clicking on one of these questions takes users to the individual question page where a user is able to see the question, along with answers that are provided by other users.
+Upon login, Users are met with the homepage which presents a leaderboard carousel of the questions with the most votes. 
 
-Users are able to vote on which questions become answerable by going to the voting page and voting on questions that they find compelling. When a question reaches a certain vote threshold the question is then migrated to the front page and opened for answering. 
+![User Question Form](assets/images/trendingScreenshot.jpg)
 
-![User Question Form](assets/images/appImage.jpg)
+Below that, we see all questions displayed. If a question is of interest to a user they can upvote it to move it up in the leaderboard. Users can also view comments and add comments anonymously by clicking the comments button below the question. 
 
-Users can submit questions for potential discussion by using the question form and select a category for their question. Upon submission of the question, users are taken to other potential front-page questions to vote.
+![User Question Form](assets/images/homeScreenshot.jpg)\
 
-Users are able view their own and other users submitted questions by clicking on desired usernames. Users are also able to view questions by category by clicking on submitted question categories. 
+On the left side of the home page the user can find their profile which includes their username and a count of the questions they have submitted.
 
 # Future Development
 * Expanded tagging to allow for multiple categories per question
@@ -52,9 +52,9 @@ Users are able view their own and other users submitted questions by clicking on
 
 
 ## Credits
-* [James Patmore](https://github.com/jamestpatmore) - React, Auth, Styled Components, Backend Models, TypeDefs/Resolvers
-* [Jedediah Schuyler](https://github.com/jschuyl) - Backend Models, TypeDefs/Resolvers, Testing, Database Seeing
-* [Autumn Legere](https://github.com/autumnlegere) - Backend Models, TypeDefs/Resolvers and Mutations, GraphQl
+* [James Patmore](https://github.com/jamestpatmore) - React, React MUI, Auth, Styled Components, Backend Models, TypeDefs/Resolvers
+* [Jedediah Schuyler](https://github.com/jschuyl) - Backend Models, TypeDefs/Resolvers, Testing, Database Seeing, Login and Signup, Auth
+* [Autumn Legere](https://github.com/autumnlegere) - Backend Models, TypeDefs/Resolvers, Client Queries/Mutations, GraphQl
 * [Harrison Burnton](https://github.com/HBurnton) - Backend Models, TypeDefs/Resolvers, Github and Heroku management, ReadMe, Presentation Slidedeck
 
 
