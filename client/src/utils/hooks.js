@@ -8,6 +8,7 @@ export function useForm (initialState = {}, callBack) {
         formData,
         onChange: ({ target: { name, value }}) => setData({ ...formData, [name]: value }),
         onSubmit: (event) => {
+            console.log(formData)
             event.preventDefault();
             return callBack();
         }

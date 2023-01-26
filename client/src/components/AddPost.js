@@ -51,7 +51,7 @@
 
     const onSubmit = async (event) => {
       event.preventDefault();
-
+      window.location.reload()
       try{
         const { data } = await addQuestion({
           variables: { ...formState, author: username }

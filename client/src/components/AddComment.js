@@ -22,6 +22,7 @@ export const AddComment = (props) => {
 
   const handleAnswerFormSubmit = async ( event ) => {
     event.preventDefault();
+    window.location.reload();
     try {
       const { data } = await addAnswer({
         variables: { 
