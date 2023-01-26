@@ -1,0 +1,113 @@
+.form-structure {
+    margin-top: 120px;
+}
+
+h1 {
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 8px 10px;
+    font-size: 20px;
+    margin-bottom: 16px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.tagline {
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    padding: 8px 10px;
+    background: navy;
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 7px;
+    font-size: 20px;
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+.skill {
+    padding: 0 0 50px 0;
+    position: relative;
+  }
+  .skill-bx {
+    background: black;
+    border-radius: 64px;
+    text-align: center;
+    padding: 60px 50px;
+    margin-top: 10px;
+    align-items: center;
+  }
+  .skill h2 {
+      font-size: 45px;
+      font-weight: 700;
+  }
+  .skill p {
+      color: #B8B8B8;
+      font-size: 14px;
+      letter-spacing: 0.8px;
+      line-height: 1.5em;
+      margin: 14px 0 75px 0;
+  }
+  .skill-slider {
+    width: 80%;
+    margin: 0 auto;
+    position: relative;
+  }
+  .skill-slider .item img {
+    width: 50%;
+    margin: 0 auto 15px auto;
+  }
+  .background-image-left {
+    top: 28%;
+    position: absolute;
+    bottom: 0;
+    width: 40%;
+    z-index: -4;
+  }
+
+  .add-icon {
+    margin-left: 60px;
+    margin-bottom: -100px;
+    justify-content: center;
+  }
+  .youShallNotPass {
+    font-weight: 700;
+    width: 25rem;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 18px 34px;
+    font-size: 18px;
+    margin-left: 18px;
+      position: relative;
+      background-color: transparent;
+      transition: 0.3s ease-in-out;
+  }
+  .youShallNotPass span {
+    z-index: 1;
+  }
+  .youShallNotPass::before {
+    content: "";
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    background-color: #fff;
+    left: 0;
+    top: 0;
+    z-index: -1;
+    transition: 0.3s ease-in-out;
+  }
+  .youShallNotPass:hover {
+    color: #121212;
+  }
+  .youShallNotPass:hover::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      position: absolute;
+  }
+  .login {
+    width: 
+  }
