@@ -18,6 +18,10 @@ const questionSchema = new Schema({
     default: Date.now,
     get: (timestamp) => dateFormat(timestamp),
   },
+  voteCount: {
+    type: Number,
+    default: 0
+  },
   answers: [
     {
       answerText: {
