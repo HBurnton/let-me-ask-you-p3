@@ -7,13 +7,13 @@ import { useQuery } from '@apollo/client';
 import AnswerList from '../components/AnswerList';
 import AnswerForm from '../components/AnswerForm';
 
-import { QUERY_SINGLE_THOUGHT } from '../utils/queries';
+import { QUERY_SINGLE_QUESTION } from '../utils/queries';
 
 const SingleQuestion = () => {
   // Use `useParams()` to retrieve value of the route parameter `:profileId`
   const { questionId } = useParams();
 
-  const { loading, data } = useQuery(QUERY_SINGLE_THOUGHT, {
+  const { loading, data } = useQuery(QUERY_SINGLE_QUESTION, {
     // pass URL parameter
     variables: { questionId: questionId },
   });

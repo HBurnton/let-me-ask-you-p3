@@ -20,7 +20,7 @@ export const QUERY_QUESTIONS = gql`
   query getQuestions {
     questions {
       _id
-      voteCount
+      
       questionText
       questionAuthor
       createdAt
@@ -54,7 +54,6 @@ export const QUERY_ME = gql`
       email
       questions {
         _id
-        voteCount
         questionText
         questionAuthor
         createdAt

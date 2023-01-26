@@ -25,10 +25,9 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_QUESTION = gql`
-  mutation addQuestions($questionText: String!) {
+  mutation addQuestion($questionText: String!) {
     addQuestion(questionText: $questionText) {
       _id
-      voteCount
       questionText
       questionAuthor
       createdAt
@@ -40,12 +39,11 @@ export const ADD_QUESTION = gql`
   }
 `;
 
-export const ADD_COMMENT = gql`
+export const ADD_ANSWER = gql`
   mutation addAnswer($questionId: ID!, $answerText: String!) {
     addAnswer(questionId: $questionId, answerText: $answerText) {
       _id
       questionText
-      voteCount
       questionAuthor
       createdAt
       answers {

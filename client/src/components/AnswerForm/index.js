@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_COMMENT } from '../../utils/mutations';
+import { ADD_ANSWER } from '../../utils/mutations';
 
 import Auth from '../../utils/auth';
 
@@ -10,7 +10,7 @@ const AnswerForm = ({ questionId }) => {
   const [answerText, setAnswerText] = useState('');
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addAnswer, { error }] = useMutation(ADD_COMMENT);
+  const [addAnswer, { error }] = useMutation(ADD_ANSWER);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
@@ -19,7 +19,7 @@ const AnswerForm = ({ questionId }) => {
       const { data } = await addAnswer({
         variables: {
           questionId,
-          answerText,
+          answerText, 
           answerAuthor: Auth.getProfile().data.username,
         },
       });

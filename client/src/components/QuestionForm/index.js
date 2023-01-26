@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_THOUGHT } from '../../utils/mutations';
-import { QUERY_QUESTION, QUERY_ME } from '../../utils/queries';
+import { ADD_QUESTION } from '../../utils/mutations';
+import { QUERY_QUESTIONS, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -12,13 +12,13 @@ const QuestionForm = () => {
 
   const [characterCount, setCharacterCount] = useState(0);
 
-  const [addQuestion, { error }] = useMutation(ADD_THOUGHT, {
+  const [addQuestion, { error }] = useMutation(ADD_QUESTION, {
     update(cache, { data: { addQuestion } }) {
       try {
-        const { questions } = cache.readQuery({ query: QUERY_QUESTION });
+        const { questions } = cache.readQuery({ query: QUERY_QUESTIONS });
 
         cache.writeQuery({
-          query: QUERY_QUESTION,
+          query: QUERY_QUESTIONS,
           data: { questions: [addQuestion, ...questions] },
         });
       } catch (e) {

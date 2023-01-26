@@ -19,7 +19,7 @@ const userSchema = new Schema({
     required: true,
     minlength: 8,
   },
-  Questions: [
+  questions: [
     {
       type: Schema.Types.ObjectId,
       ref: 'Question',
